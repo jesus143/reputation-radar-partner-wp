@@ -1,0 +1,61 @@
+Update for Feb 3, 2017
+Create diagram for partner and staff
+Search for plugin structure OOP
+Setup plugin for partner
+Make plugin to OOP structures
+Create plugin instance
+Create plugin shortodes
+Create pages settings and radar
+Separate Shortocdes in different files
+Assist Mik and Mj with their issues
+
+Update for Feb 6, 2017
+Continue with radar partner ui
+
+
+Update for Feb 10, 2017
+create model rules
+setup model info
+allow input sample settings
+allow query sample settings to be used in google scrape
+turn array google scraped results
+check if scraped from google is already exist in the database and if so do nothing but if not exist then do insert
+ 
+Todo by Feb 13, 2017
+view all tab none related and related status - 30min
+view tab related status - 30 min
+view tab not related status - 30min 
+allow update status by partner - 1hr
+   - allow update not related status turn to 3
+   - allow update related status turn to 2
+Allow delete related and not related data
+pagination with partner results
+
+
+
+allow update status by agent - 1hr 
+    - only show alert that is status is 0
+    - allow agent to update status from 0 - 1 
+Todo by Feb 14, 2017 
+when status updated by agent should show in partner 
+when status update by partner should show in tabs
+allow delete for scraped data
+add ui for all, related and not related pagination 
+allow retrieve correct partner id 
+allow retrieve correct user id
+ 
+ Tod by Feb 15, 2017
+Create ui for Agent 
+Retrieve all info from ontraport and save to agent site database
+allow partner add specific review sites in each partners
+allow scrape each users google keyword and review sites
+allow scrape sequence by user
+allow agent approve data
+
+
+pending = 0
+set related by agent = 1
+set  none related by agent = 4
+set related by partner = 2
+set none related by partner = 3
+
