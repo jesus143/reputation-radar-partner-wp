@@ -1,7 +1,7 @@
 <?php
 
 
-function rrp_settings_func() {
+function rrp_settings_func() {9
  ?> 
  <br><br> 
        <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">  
@@ -61,8 +61,11 @@ function rrp_settings_func() {
 
 function rrp_alert_partner_func() {
 
-    $partner_id              = 1486755452;
+
     $alert                   = new App\WP_Reputation_Radar_Alert();
+    $setting                 = new App\WP_Reputation_Radar_Settings();
+    $partner_id              = $setting->getCurrentPartnerIdFromSettings();
+
     $partnersAlertAll        = $alert->getPartnersAlertAll($partner_id);
     $partnersAlertRelated    = $alert->getPartnersAlertRelated($partner_id);
     $partnersAlertNotRelated = $alert->getPartnersAlertNotRelated($partner_id);

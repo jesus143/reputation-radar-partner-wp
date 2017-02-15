@@ -20,4 +20,56 @@ function run_single_post_meta_manager() {
     $spmm = new Single_Post_Meta_Manager(); 
 } 
 
-run_single_post_meta_manager(); 
+run_single_post_meta_manager();
+
+/**
+ * Create database table when plugin is activated
+ *
+ */
+register_activation_hook( __FILE__, 'rrp_table_install' );
+function rrp_table_install() {
+
+    global $jal_db_version;
+    $jal_db_version = '1.0';
+
+    global $wpdb;
+    global $jal_db_version;
+
+    $table_name = $wpdb->prefix . 'reputation_radar_alert';
+
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql1 = "CREATE TABLE $table_name (
+		id int(9) NOT NULL AUTO_INCREMENT,
+        partner_id int(9) NOT NULL,
+        title varchar(255) NOT NULL,
+        description text NOT NULL,
+        person_name varchar(255) NOT NULL,
+        url varchar(255) NOT NULL,
+        status smallint(2) NOT NULL,
+        comment text NOT NULL,
+        rate varchar(50) NOT NULL,
+        updated_at datetime NOT NULL,
+        created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		PRIMARY KEY  (id)
+	) $charset_collate;";
+
+    $table_name = $wpdb->prefix . 'reputation_radar_settings';
+    $sql2 = "CREATE TABLE $table_name (
+		id int(11) NOT NULL AUTO_INCREMENT,
+        url varchar(255) NOT NULL,
+        partner_id int(11) NOT NULL,
+        user_id int(11) NOT NULL,
+        company_search_keyword varchar(255) NOT NULL,
+        updated_at datetime NOT NULL,
+        created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		PRIMARY KEY  (id)
+	) $charset_collate;";
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql1 );
+    dbDelta( $sql2 );
+    dbDelta( $sql3 );
+
+    add_option( 'jal_db_version', $jal_db_version );
+}

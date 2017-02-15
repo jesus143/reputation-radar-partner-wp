@@ -1,6 +1,5 @@
 <?php
 use App\RRP_QUERIES;
-
 if(!function_exists('rrp_get_current_site_url_full')) {
 	function rrp_get_current_site_url_full()
 	{
@@ -9,29 +8,21 @@ if(!function_exists('rrp_get_current_site_url_full')) {
 	    return $escaped_url;
 	}
 }
-
 function rrp_settings_get_current_user_keyword()
 {
 	$rrp_queries = new RRP_QUERIES('wp_reputation_radar_settings');
  	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . rrp_get_authenticated_user_id());
  	return (empty($settings[0]['company_search_keyword'])) ? null : $settings[0]['company_search_keyword'];
 }
-
-function rrp_settings_get_current_user_url($partner_id=null)
+function rrp_settings_get_current_user_url()
 {
 
-	if(empty($partner_id)) {
-		$partner_id = rrp_get_authenticated_user_id();
-	}
+	$user_id = rrp_get_authenticated_user_id();
 
 	$rrp_queries = new RRP_QUERIES('wp_reputation_radar_settings');
- 	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . $partner_id );
+ 	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . $user_id );
  	return (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 }
-
-
-
-
 function dd($str)
 {
 	print "<pre>";
@@ -39,18 +30,14 @@ function dd($str)
 	print "</pre>";
 	die(1);
 }
-
-
 function rrp_get_authenticated_user_id()
 {
 	return  get_current_user_id();
 }
-
 function rrp_get_authenticated_partner_id()
 {
 	return rrp_as_get_current_user_partner_id();
 }
-
 // get current user partner id from ontraport
 function rrp_as_get_current_user_partner_id()
 {

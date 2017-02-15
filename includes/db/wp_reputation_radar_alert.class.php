@@ -23,6 +23,8 @@ class WP_Reputation_Radar_Alert {
 			$this->rrp_queries = new RRP_QUERIES('wp_reputation_radar_alert'); 
 	}
 
+
+
 	public function getPartnersAlertInit($partner_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where status = 0");
@@ -87,14 +89,9 @@ class WP_Reputation_Radar_Alert {
 		return $alerts;
 	}
 
-
 	// ui
 	public function uiAlertInit($partnersAlertInit)
 	{
-
-
-
-
 
 		?>
 
@@ -107,8 +104,10 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-init" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
+				<th>Id</th>
 				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -118,8 +117,10 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
 				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -130,8 +131,10 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach ($partnersAlertInit as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td> <?php print  $alert['id']; ?> </td>
 					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
 					<td> <?php print  $alert['person_name']; ?> </td>
+					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print  $alert['title']; ?> </td>
 					<td> <?php print  $alert['description']; ?> </td>
 					<td>  <?php print $alert['url']; ?> </td>
@@ -157,7 +160,10 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-all" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
+				<th>Id</th>
+				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -167,7 +173,10 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
+				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -178,7 +187,10 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td> <?php print  $alert['id']; ?> </td>
+					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
 					<td> <?php print $alert['person_name']; ?> </td>
+					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print $alert['title']; ?> </td>
 					<td> <?php print $alert['description']; ?> </td>
 					<td>  <?php print $alert['url']; ?> </td>
@@ -206,7 +218,10 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-related" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
+				<th>Id</th>
+				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -215,7 +230,10 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
+				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -225,7 +243,10 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td> <?php print  $alert['id']; ?> </td>
+					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
 					<td> <?php print $alert['person_name']; ?> </td>
+					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print $alert['title']; ?> </td>
 					<td> <?php print $alert['description']; ?> </td>
 					<td> <?php print $alert['url']; ?> </td>
@@ -251,7 +272,10 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-not-related" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
+				<th>Id</th>
+				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -260,7 +284,10 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
+				<th>Company Url</th>
 				<th>Name</th>
+				<th>Rate</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Url</th>
@@ -270,7 +297,10 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td> <?php print  $alert['id']; ?> </td>
+					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
 					<td> <?php print $alert['person_name']; ?> </td>
+					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print $alert['title']; ?> </td>
 					<td> <?php print $alert['description']; ?> </td>
 					<td> <?php print $alert['url']; ?> </td>
