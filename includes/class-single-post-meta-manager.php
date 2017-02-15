@@ -9,9 +9,7 @@ class Single_Post_Meta_Manager {
     protected $version;
 
     public function __construct() {
-
         $this->load_dependencies();
-
         $this->load_files();
         $this->define_shortcodes();
         $this->define_actions(); 
@@ -20,7 +18,10 @@ class Single_Post_Meta_Manager {
     }
 
     private function load_dependencies() {
+
         require_once( ABSPATH . "wp-includes/link-template.php");
+        require_once( ABSPATH . "wp-includes/user.php");
+        require_once( ABSPATH . "wp-includes/pluggable.php");
     }
 
     private function load_files() {
@@ -51,15 +52,17 @@ class Single_Post_Meta_Manager {
     private function define_shortcodes()
     {
         add_shortcode("rrp_settings", 'rrp_settings_func');
-        add_shortcode("rrp_alert", 'rrp_alert_func');
+        add_shortcode("rrp_alert_partner", 'rrp_alert_partner_func');
+        add_shortcode("rrp_alert_agent", 'rrp_alert_agent_func');
     }
 
     public function run()
     {
+        //
     }
 
     public function get_version()
     {
+        //
     }
-
 }

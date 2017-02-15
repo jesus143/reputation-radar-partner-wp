@@ -1,5 +1,34 @@
 
 
+
+
+
+function updatePartnerAlertToNotRelatedByAgent(alert_id)
+{
+    $.get( "http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_non_related.php", { alert_id: alert_id } )
+    .done(function( data ) {
+        if(data.status  == 'success' ) {
+            console.log("successfully rated to related");
+        } else {
+            console.log("ophs, something wrong!");
+        }
+       $("#rrp-alert-" + alert_id).css('display', 'none');
+    });
+}
+function updatePartnerAlertToRelatedByAgent(alert_id)
+{
+    $.get( "http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_related.php", { alert_id: alert_id } )
+    .done(function( data ) {
+        if(data.status  == 'success' ) {
+            console.log("successfully rated to related");
+        } else {
+            console.log("ophs, something wrong!");
+        }
+       $("#rrp-alert-" + alert_id).css('display', 'none');
+    });
+}
+
+
 function updatePartnerAlertToRelated(alert_id)
 {
     $.get( "http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_related_non_related.php", { alert_id: alert_id, type:'related' } )
@@ -12,6 +41,7 @@ function updatePartnerAlertToRelated(alert_id)
        $("#rrp-alert-" + alert_id).css('display', 'none');
     });
 }
+
 function updatePartnerAlertNotToRelated(alert_id)
 {
     $.get( "http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_related_non_related.php", { 'alert_id': alert_id, type:'not related' } )

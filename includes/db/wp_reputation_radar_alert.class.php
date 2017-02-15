@@ -23,6 +23,11 @@ class WP_Reputation_Radar_Alert {
 			$this->rrp_queries = new RRP_QUERIES('wp_reputation_radar_alert'); 
 	}
 
+	public function getPartnersAlertInit($partner_id)
+	{
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where status = 0");
+		return $alerts;
+	}
 	public function getPartnersAlertAll($partner_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 1");
@@ -40,16 +45,24 @@ class WP_Reputation_Radar_Alert {
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 3");
 		return $alerts;
 	}
-
+	public function updatePartnerAlertToRelatedByAgent($alert_id)
+	{
+		$alerts = $this->rrp_queries->wpdb_update(['status'=>1], ['id'=>$alert_id]);
+		return $alerts;
+	}
 	public function updatePartnerAlertToRelated($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>2], ['id'=>$alert_id]);
 		return $alerts;
 	}
-
 	public function updatePartnerAlertNotToRelated($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>3], ['id'=>$alert_id]);
+		return $alerts;
+	}
+	public function updatePartnerAlertToNotRelatedByAgent($alert_id)
+	{
+		$alerts = $this->rrp_queries->wpdb_update(['status'=>4], ['id'=>$alert_id]);
 		return $alerts;
 	}
 
@@ -76,6 +89,60 @@ class WP_Reputation_Radar_Alert {
 
 
 	// ui
+	public function uiAlertInit($partnersAlertInit)
+	{
+
+
+
+
+
+		?>
+
+		<script>
+			$(document).ready(function () {
+				$('#rrp-alert-init').DataTable();
+			});
+		</script>
+
+		<table id="rrp-alert-init" class="display" cellspacing="0" width="100%">
+			<thead>
+			<tr>
+				<th>Company Url</th>
+				<th>Name</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Url</th>
+				<th>Relevant</th>
+				<th>Not Relevant</th>
+			</tr>
+			</thead>
+			<tfoot>
+			<tr>
+				<th>Company Url</th>
+				<th>Name</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Url</th>
+				<th>Relevant</th>
+				<th>Not Relevant</th>
+			</tr>
+			</tfoot>
+			<tbody>
+			<?php foreach ($partnersAlertInit as $alert): ?>
+				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
+					<td> <?php print  $alert['person_name']; ?> </td>
+					<td> <?php print  $alert['title']; ?> </td>
+					<td> <?php print  $alert['description']; ?> </td>
+					<td>  <?php print $alert['url']; ?> </td>
+					<td><input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelatedByAgent(<?php print $alert['id']; ?>)"/></td>
+					<td><input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertToNotRelatedByAgent(<?php print $alert['id']; ?>)"/></td>
+				</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php
+	}
 	public function uiAlertAll($partnersAlertAll)
 	{?>
 

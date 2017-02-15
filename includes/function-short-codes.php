@@ -35,13 +35,14 @@ function rrp_settings_func() {
               <p class="list-group-item-text"> <small>This is the company keyword for internet search...............</small>  </p> 
             </a> 
             <div class="list-group-item">  
-              
 
- 
                 <form action="<?php print rrp_get_current_site_url_full(); ?>" method="post" >
                 <br><br>
-                <div class="form-group"> 
+                <div class="form-group">
+
+                    <?php print " user_id " . rrp_get_authenticated_user_id(); ?>
                   <input type="text" class="form-control" value="<?php print rrp_settings_get_current_user_keyword(); ?>" name="company_search_keyword" />
+                  <input type="text" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
                   <br/>
                   <input type="submit" value="Update" class="alert alert-info" name="rrp_post_settings"  /> 
 
@@ -58,7 +59,7 @@ function rrp_settings_func() {
 <?php 
 }
 
-function rrp_alert_func() {
+function rrp_alert_partner_func() {
 
     $partner_id              = 1486755452;
     $alert                   = new App\WP_Reputation_Radar_Alert();
@@ -111,3 +112,32 @@ function rrp_alert_func() {
   </div>
   <?php
 }
+
+function rrp_alert_agent_func()
+ {
+    $partner_id              = 1486755452;
+    $alert                   = new App\WP_Reputation_Radar_Alert();
+    $partnersAlertInit        = $alert->getPartnersAlertInit($partner_id);
+
+
+    //    dd($partnersAlertAll);
+
+  ?>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" >
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+  <br><br><br>
+   <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+    <br>
+
+      <h3> Display Alerts </h3>
+
+      <div class="row">
+        <div class="col-md-12">
+            <?php $alert->uiAlertInit($partnersAlertInit); ?>
+        </div>
+      </div>
+    </div>
+    <?php
+    }
