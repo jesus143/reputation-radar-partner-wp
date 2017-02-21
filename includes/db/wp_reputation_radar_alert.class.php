@@ -93,6 +93,7 @@ class WP_Reputation_Radar_Alert {
 	public function uiAlertInit($partnersAlertInit)
 	{
 
+
 		?>
 
 		<script>
@@ -147,7 +148,8 @@ class WP_Reputation_Radar_Alert {
 		<?php
 	}
 	public function uiAlertAll($partnersAlertAll)
-	{?>
+	{
+		?>
 
 
 		<script>

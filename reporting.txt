@@ -47,14 +47,23 @@ allow retrieve correct user id
 Todo by Feb 15, 2017
 
 
+
+Update for Feb 15, 2017
 Delete all data from database
 Login first account assign unique partner id and go settings create keyword and url then save
 Login second account assign  unique partner id and go settings create keyword and url then save
 Set scrape in google set limit to 20 and start scraping, this should scrape the 2 entry in settings and each user has 20 new scrapped data from google
 Set relevant 15 15 entry each user by agent
 show 15 15 in each user and now user set relevant 5 not relevant 5 then 5 5 5 should show in tabs this will be applied to the 2 users
-
 Install plugin to server testing and make pages live
+create add function to auto create table when plugin is activated
+Todo for Feb 15, 2017
+Create multiple entry in database with specific rate links
+Create a function to scrape each links added to database and save to storage and display to agent then partner
+with person name who commented and rating, we only get rating with 3 below.
+Create scrape by batch
+
+
 do the same process test in testing
 ask cronjobs access from rich
 search how to run codeigniter via cronjobs

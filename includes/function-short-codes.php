@@ -1,8 +1,26 @@
 <?php
 
 
-function rrp_settings_func() {9
- ?> 
+function rrp_settings_func() {
+ ?>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" >
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
+
+                <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+
  <br><br> 
        <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">  
       <div class="row">
@@ -40,7 +58,7 @@ function rrp_settings_func() {9
                 <br><br>
                 <div class="form-group">
 
-                    <?php print " user_id " . rrp_get_authenticated_user_id(); ?>
+                    <?php //print " user_id " . rrp_get_authenticated_user_id(); ?>
                   <input type="text" class="form-control" value="<?php print rrp_settings_get_current_user_keyword(); ?>" name="company_search_keyword" />
                   <input type="text" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
                   <br/>
@@ -62,40 +80,57 @@ function rrp_settings_func() {9
 function rrp_alert_partner_func() {
 
 
-    $alert                   = new App\WP_Reputation_Radar_Alert();
-    $setting                 = new App\WP_Reputation_Radar_Settings();
-    $partner_id              = $setting->getCurrentPartnerIdFromSettings();
 
-    $partnersAlertAll        = $alert->getPartnersAlertAll($partner_id);
-    $partnersAlertRelated    = $alert->getPartnersAlertRelated($partner_id);
-    $partnersAlertNotRelated = $alert->getPartnersAlertNotRelated($partner_id);
-    $totalAllAlert           = $alert->countTotalAllAlert($partner_id);
-    $totalRelevantAlert      = $alert->countTotalRelevantAlert($partner_id);
-    $totalNotRelevantAlert   = $alert->countTotalNotRelevantAlert($partner_id);
+     $alert                   = new App\WP_Reputation_Radar_Alert();
+     $setting                 = new App\WP_Reputation_Radar_Settings();
+     $partner_id              = $setting->getCurrentPartnerIdFromSettings();
 
+     $partnersAlertAll = '';
+     $partnersAlertRelated = '';
+     $partnersAlertNotRelated = '';
 
-//    dd($partnersAlertAll);
+     $totalAllAlert = 0;
+     $totalRelevantAlert = 0;
+     $totalNotRelevantAlert = 0;
 
+    if(!empty($partner_id)) {
+        $partnersAlertAll        = $alert->getPartnersAlertAll($partner_id);
+        $partnersAlertRelated    = $alert->getPartnersAlertRelated($partner_id);
+
+        $partnersAlertNotRelated = $alert->getPartnersAlertNotRelated($partner_id);
+        $totalAllAlert           = $alert->countTotalAllAlert($partner_id);
+        $totalRelevantAlert      = $alert->countTotalRelevantAlert($partner_id);
+        $totalNotRelevantAlert   = $alert->countTotalNotRelevantAlert($partner_id);
+    }
+
+    // dd($partnersAlertAll);
   ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" >
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  
+     
+        <script type="text/javascript" src="http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
+
+                <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+ 
 
   <br><br><br>
    <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">  
-    <br> 
-
+    <br>
       <h3> Display Alerts </h3>
-
       <div class="row">
-        <div class="col-md-12"> 
-          
+        <div class="col-md-12">
           <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">All Alert ( <?php print $totalAllAlert ; ?> )</a></li>
             <li><a data-toggle="tab" href="#menu1">Relevant Alert (<?php print $totalRelevantAlert; ?>)</a></li>
             <li><a data-toggle="tab" href="#menu2">Not Relevant alert ( <?php print $totalNotRelevantAlert ; ?> )</a></li>
           </ul>
-
           <div class="tab-content">
             <div id="home" class="tab-pane fade in active"> 
                 <div class="list-group">
@@ -109,7 +144,6 @@ function rrp_alert_partner_func() {
                 <?php $alert->uiAlertNotRelated($partnersAlertNotRelated);   ?>
             </div>
           </div>
-          
         </div>   
       </div>
   </div>
@@ -144,3 +178,23 @@ function rrp_alert_agent_func()
     </div>
     <?php
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
