@@ -14,9 +14,18 @@ class Single_Post_Meta_Manager {
         $this->define_shortcodes();
         $this->load_files();
         $this->define_variables();
+        $this->default_fields();
 
     }
 
+    private function default_fields()
+    {
+        ?>
+
+        <br><
+            <input type="hidden" value="<?php print get_site_url();  ?>" id="rrp_ri_site_url"  />
+        <?php
+    }
     private function load_dependencies() {
 
         require_once( ABSPATH . "wp-includes/link-template.php");

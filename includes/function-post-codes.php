@@ -5,7 +5,9 @@ use App\RRP_QUERIES;
  $user_id = rrp_get_authenticated_user_id() ; 
 
  // set current authenticated, partner id from op
- $partner_id =  rrp_get_authenticated_partner_id(); 
+ $partner_id =  rrp_get_authenticated_partner_id();
+
+
 
 if(isset($_POST['rrp_post_settings'])) { 
 

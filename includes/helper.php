@@ -42,6 +42,8 @@ function rrp_get_authenticated_partner_id()
 function rrp_as_get_current_user_partner_id()
 {
 	if(rrp_as_is_localhost() ){
+
+
 		return 12345; // dummy partner id for my localhost
 	} else {
 
@@ -129,6 +131,12 @@ function rrp_as_is_localhost() {
 		return true;
 	}
 }
+function rrp_is_limit_str($str, $limit=10) {
+	if (strlen($str) > $limit)
+		$str = substr($str, 0, 7) . '...';
 
+
+	return $str ;
+}
 
 

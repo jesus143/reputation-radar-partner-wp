@@ -152,11 +152,7 @@ class WP_Reputation_Radar_Alert {
 		?>
 
 
-		<script>
-			$(document).ready(function() {
-				$('#rrp-alert-all').DataTable();
-			} );
-		</script>
+
 
 
 		<table id="rrp-alert-all" class="display" cellspacing="0" width="100%">
@@ -190,11 +186,11 @@ class WP_Reputation_Radar_Alert {
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
 					<td> <?php print  $alert['id']; ?> </td>
-					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
-					<td> <?php print $alert['person_name']; ?> </td>
+					<td> <?php print  rrp_settings_get_current_user_url(); ?> </td>
+					<td> <?php print  $alert['person_name']; ?> </td>
 					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print $alert['title']; ?> </td>
-					<td> <?php print $alert['description']; ?> </td>
+					<td> <?php print rrp_is_limit_str($alert['description'], 40); ?> </td>
 					<td>  <?php print $alert['url']; ?> </td>
 					<td> <input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelated(<?php print $alert['id']; ?>)" />  </td>
 					<td> <input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertNotToRelated(<?php print $alert['id']; ?>)" />  </td>
@@ -210,11 +206,6 @@ class WP_Reputation_Radar_Alert {
 	{?>
 
 
-		<script>
-			$(document).ready(function() {
-				$('#rrp-alert-related').DataTable();
-			} );
-		</script>
 
 
 		<table id="rrp-alert-related" class="display" cellspacing="0" width="100%">
@@ -263,12 +254,6 @@ class WP_Reputation_Radar_Alert {
 	public function uiAlertNotRelated($partnersAlertAll)
 	{?>
 
-
-		<script>
-			$(document).ready(function() {
-				$('#rrp-alert-not-related').DataTable();
-			} );
-		</script>
 
 
 		<table id="rrp-alert-not-related" class="display" cellspacing="0" width="100%">

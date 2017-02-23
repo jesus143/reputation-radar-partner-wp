@@ -4,13 +4,13 @@
  * Proper way to enqueue scripts and styles.
  */
 function wpdocs_theme_name_scripts() {
-   ?> 
-		 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-		<script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
-		<script type="text/javascript" src="http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
-		<link type="text/css" rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"/>
-
-		  
+   ?>
+	<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" ></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" ></script>
+	<script type="text/javascript" src="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
    <?php 
 }
 

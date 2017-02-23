@@ -3,22 +3,6 @@
 
 function rrp_settings_func() {
  ?>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" >
-        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-        <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
-
-                <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
 
  <br><br> 
@@ -103,22 +87,19 @@ function rrp_alert_partner_func() {
         $totalNotRelevantAlert   = $alert->countTotalNotRelevantAlert($partner_id);
     }
 
+
+
+
     // dd($partnersAlertAll);
   ?>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" >
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-  
-     
-        <script type="text/javascript" src="http://localhost/practice/wordpress/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
+	    <script>
+			$(document).ready(function() {
+				$('#rrp-alert-all').DataTable();
+                $('#rrp-alert-related').DataTable();
+                $('#rrp-alert-not-related').DataTable();
+			} );
+		</script>
 
-                <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
- 
 
   <br><br><br>
    <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">  
@@ -160,9 +141,7 @@ function rrp_alert_agent_func()
     //    dd($partnersAlertAll);
 
   ?>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" >
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 
   <br><br><br>
    <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
