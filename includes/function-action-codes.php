@@ -4,14 +4,31 @@
  * Proper way to enqueue scripts and styles.
  */
 function wpdocs_theme_name_scripts() {
+
    ?>
-	<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- data table requirements -->
+	<script src="//code.jquery.com/jquery-1.12.4.js" > </script>
 	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" ></script>
-	<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" ></script>
-	<script type="text/javascript" src="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
-   <?php 
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+
+
+	<!-- local css -->
+	<script src="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/css/custom_style.css">
+
+	<script>
+
+   	$.noConflict();
+  	jQuery( document ).ready(function( $ ) {
+		$('#this-is-jus-a-testing-for-data-tables').DataTable();
+		$('#rrp-alert-init').DataTable();
+		$('#rrp-alert-all').DataTable();
+		$('#rrp-alert-related').DataTable();
+		$('#rrp-alert-not-related').DataTable();
+		});
+	</script>
+   <?php
 }
 
 function rrp_admin_menu() {

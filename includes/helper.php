@@ -43,8 +43,10 @@ function rrp_as_get_current_user_partner_id()
 {
 	if(rrp_as_is_localhost() ){
 
+		return 54321;
+//		return 12345;
 
-		return 12345; // dummy partner id for my localhost
+		// dummy partner id for my localhost
 	} else {
 
 		$opResponse = rrp_as_get_ontraport_info();
@@ -139,4 +141,24 @@ function rrp_is_limit_str($str, $limit=10) {
 	return $str ;
 }
 
+if(!function_exists('rrp_is_local')) {
+	function rrp_is_local()
+	{
+		if ($_SERVER['HTTP_HOST'] == 'localhost'
+				|| substr($_SERVER['HTTP_HOST'], 0, 3) == '10.'
+				|| substr($_SERVER['HTTP_HOST'], 0, 7) == '192.168'
+		) return true;
+		return false;
+	}
+}
 
+function rrp_script_and_style()
+{
+	?>
+
+
+
+
+
+	<?php
+}

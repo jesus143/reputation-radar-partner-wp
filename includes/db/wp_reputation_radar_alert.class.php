@@ -96,11 +96,7 @@ class WP_Reputation_Radar_Alert {
 
 		?>
 
-		<script>
-			$(document).ready(function () {
-				$('#rrp-alert-init').DataTable();
-			});
-		</script>
+
 
 		<table id="rrp-alert-init" class="display" cellspacing="0" width="100%">
 			<thead>
@@ -139,8 +135,15 @@ class WP_Reputation_Radar_Alert {
 					<td> <?php print  $alert['title']; ?> </td>
 					<td> <?php print  $alert['description']; ?> </td>
 					<td>  <?php print $alert['url']; ?> </td>
-					<td><input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelatedByAgent(<?php print $alert['id']; ?>)"/></td>
-					<td><input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertToNotRelatedByAgent(<?php print $alert['id']; ?>)"/></td>
+					<td>
+						<input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelatedByAgent('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )"/>
+						<div style="display:none" class="rrp-loader" id="alert-loader-relevant-<?php print $alert['id']; ?>"  ></div>
+
+					</td>
+					<td>
+						<input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertToNotRelatedByAgent('<?php print $alert['id']; ?>',  '#alert-loader-not-relevant-<?php print $alert['id']; ?>')"/>
+						<div style="display:none" class="rrp-loader" id="alert-loader-not-relevant-<?php print $alert['id']; ?>" ></div>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
@@ -192,8 +195,16 @@ class WP_Reputation_Radar_Alert {
 					<td> <?php print $alert['title']; ?> </td>
 					<td> <?php print rrp_is_limit_str($alert['description'], 40); ?> </td>
 					<td>  <?php print $alert['url']; ?> </td>
-					<td> <input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelated(<?php print $alert['id']; ?>)" />  </td>
-					<td> <input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertNotToRelated(<?php print $alert['id']; ?>)" />  </td>
+
+					<td>
+						<input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelated('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )" />
+						<div style="display:none" class="rrp-loader" id="alert-loader-relevant-<?php print $alert['id']; ?>"  ></div>
+					</td>
+
+					<td>
+						<input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertNotToRelated('<?php print $alert['id']; ?>', '#alert-loader-not-relevant-<?php print $alert['id']; ?>' )" />
+						</td><div style="display:none" class="rrp-loader" id="alert-loader-not-relevant-<?php print $alert['id']; ?>" ></div>
+					</td>
 
 				</tr>
 			<?php endforeach; ?>
@@ -243,7 +254,12 @@ class WP_Reputation_Radar_Alert {
 					<td> <?php print $alert['title']; ?> </td>
 					<td> <?php print $alert['description']; ?> </td>
 					<td> <?php print $alert['url']; ?> </td>
-					<td> <input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert(<?php print $alert['id']; ?>)" />  </td>
+
+					<td>
+						<input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')" />
+						<div style="display:none" class="rrp-loader" id="alert-loader-delete-<?php print $alert['id']; ?>"  ></div>
+					</td>
+
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
@@ -291,7 +307,10 @@ class WP_Reputation_Radar_Alert {
 					<td> <?php print $alert['title']; ?> </td>
 					<td> <?php print $alert['description']; ?> </td>
 					<td> <?php print $alert['url']; ?> </td>
-				 <td> <input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert(<?php print $alert['id']; ?>)" />  </td>
+				 <td>
+					 <input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')" />
+					 <div style="display:none" class="rrp-loader" id="alert-loader-delete-<?php print $alert['id']; ?>"  ></div>
+				 </td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
