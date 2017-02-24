@@ -15,10 +15,19 @@ function wpdocs_theme_name_scripts() {
 
 	<!-- local css -->
 	<script src="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/css/custom_style.css">
 
-	<script>
+	<!-- bootstrap -->
+	<!-- Optional theme -->
+	<script src="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/js/custom_js.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="<?php print get_site_url(); ?>/wp-content/plugins/reputation-radar-partner/public/css/bootstrap-custom.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+	<!-- run data tables  -->
+	<script>
    	$.noConflict();
   	jQuery( document ).ready(function( $ ) {
 		$('#this-is-jus-a-testing-for-data-tables').DataTable();
@@ -28,6 +37,7 @@ function wpdocs_theme_name_scripts() {
 		$('#rrp-alert-not-related').DataTable();
 		});
 	</script>
+
    <?php
 }
 

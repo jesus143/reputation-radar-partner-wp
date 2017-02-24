@@ -32,7 +32,29 @@ function rrp_settings_get_specific_company_url_by_partner_id($partner_id)
 	return (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 }
 
+function rrp_settings_get_specific_company_search_keyword_by_partner_id($partner_id, $alert_id, $rating)
+{
+	if($rating > 0) {
+		$rrp_queries = new RRP_QUERIES('wp_reputation_radar_alert');
+		$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_alert where id = " . $alert_id);
+		$url = (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 
+		$url_name = explode("/", $url );
+
+		$link_name = $url_name[2];
+
+		return " <a href='"  . $url . "' target='_blank' >  " . $link_name . " </a>";
+
+	} else {
+		$rrp_queries = new RRP_QUERIES('wp_reputation_radar_settings');
+		$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where partner_id = " . $partner_id);
+		$keyword = (empty($settings[0]['company_search_keyword'])) ? null : $settings[0]['company_search_keyword'];
+
+		$url = 'https://www.google.com.ph/search?num=10&q=' . urlencode($keyword);
+		return " <a href='"  . $url . "' target='_blank'> Google Source </a>";
+	}
+
+}
 
 function dd($str)
 {

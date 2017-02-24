@@ -10,31 +10,9 @@ function rrp_settings_func() {
 
 
 
- <br><br> 
-       <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">  
+ <br><br>
       <div class="row">
-        <div class="col-md-12"> 
-          <br/><br/> 
-          <div class="list-group"> 
-            <a href="#" class="list-group-item active"> 
-              <h4 class="list-group-item-heading">Copmany Name</h4> 
-              <p class="list-group-item-text"> <small>This is the company name</small>  </p> 
-            </a> 
-            <a href="#" class="list-group-item"> 
-              <h4 class="list-group-item-heading">UK Company</h4>  
-            </a>  
-          </div> 
-          <br/><br/> 
-          <div class="list-group"> 
-            <a href="#" class="list-group-item active"> 
-              <h4 class="list-group-item-heading">Copmany Url</h4> 
-              <p class="list-group-item-text"> <small>This is the company name</small>  </p> 
-            </a> 
-            <a href="#" class="list-group-item"> 
-              <h4 class="list-group-item-heading">uk-company.com</h4>  
-            </a>  
-
-          </div> 
+        <div class="col-md-12">
            <br/><br/> 
                <div class="list-group"> 
             <a href="#" class="list-group-item active"> 
@@ -49,10 +27,10 @@ function rrp_settings_func() {
 
                     <?php //print " user_id " . rrp_get_authenticated_user_id(); ?>
                   <labl class="label" style="color:black"> Company Search Keyword </labl><br><br>
-                  <input type="text" class="form-control" value="<?php print rrp_settings_get_current_user_keyword(); ?>" name="company_search_keyword" />
+                  <input type="text" style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_keyword(); ?>" name="company_search_keyword" />
                   <hr>
                   <labl class="label" style="color:black"> Company Url</labl><br><br>
-                  <input type="text" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
+                  <input type="text"  style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
                   <br/>
                   <input type="submit" value="Update" class="alert alert-info" name="rrp_post_settings"  /> 
 
@@ -60,12 +38,8 @@ function rrp_settings_func() {
                 </div> 
             </div>  
           </div>
- 
         </div>
-        
-         
       </div>
-  </div> 
 <?php 
 }
 

@@ -102,17 +102,19 @@ class WP_Reputation_Radar_Alert {
 			<thead>
 			<tr>
 				<th style="width:10%" >Partner Id</th>
+				<th  style="width:10%" >Keyword/Site </th>
 				<th  style="width:20%" >Company <br> Url</th>
-				<th style="width:10%" >Rate</th>
-				<th style="width:40%"  >Description</th>
+				<th style="width:7%" >Rate</th>
+				<th style="width:35%"  >Description</th>
 				<th>Relevant <br> Not Relevant</th>
 			</tr>
 			</thead>
 			<tfoot>
 			<tr>
-				<th >Partner Id</th>
+				<th>Partner Id</th>
+				<th>Keyword/Site</th>
+				<th>Company <br> Url</th>
 				<th>Rate</th>
-				<th>>Company <br> Url</th>
 				<th>Description</th>
 				<th>Relevant <br> Not Relevant</th>
 			</tr>
@@ -120,8 +122,9 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach ($partnersAlertInit as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
-					<td > <?php print  $alert['partner_id']; ?> </td>
-					<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
+					<td> <?php print  $alert['partner_id']; ?> </td>
+					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
+					<td> <?php print rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
 					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
 					<td>
@@ -141,58 +144,43 @@ class WP_Reputation_Radar_Alert {
 	{
 		?>
 
-
-
-
-
 		<table id="rrp-alert-all" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
-				<th>Rate</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Url</th>
-				<th>Relevant</th>
-				<th>Not Relevant</th>
+			<tr>
+				<th style="width:4%" >Partner Id</th>
+				<th  style="width:4%" >Keyword/Site</th>
+				<th  style="width:10%" >Company <br> Url</th>
+				<th style="width:7%" >Rate</th>
+				<th style="width:40%"  >Description</th>
+				<th>Relevant <br> Not Relevant</th>
 			</tr>
 			</thead>
 			<tfoot>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
+				<th>Partner Id</th>
+				<th>Keyword</th>
+				<th>Company <br> Url</th>
 				<th>Rate</th>
-				<th>Title</th>
 				<th>Description</th>
-				<th>Url</th>
-				<th>Relevant</th>
-				<th>Not Relevant</th>
+				<th>Relevant <br> Not Relevant</th>
 			</tr>
 			</tfoot>
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
-					<td> <?php print  $alert['id']; ?> </td>
-					<td> <?php print  rrp_settings_get_current_user_url(); ?> </td>
-					<td> <?php print  $alert['person_name']; ?> </td>
+					<td > <?php print  $alert['partner_id']; ?> </td>
+					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
+					<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
 					<td> <?php print  $alert['rate']; ?> </td>
-					<td> <?php print $alert['title']; ?> </td>
-					<td> <?php print rrp_is_limit_str($alert['description'], 40); ?> </td>
-					<td>  <?php print $alert['url']; ?> </td>
-
+					<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
 					<td>
 						<input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelated('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )" />
 						<div style="display:none" class="rrp-loader" id="alert-loader-relevant-<?php print $alert['id']; ?>"  ></div>
-					</td>
-
-					<td>
+				 		<br>
 						<input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertNotToRelated('<?php print $alert['id']; ?>', '#alert-loader-not-relevant-<?php print $alert['id']; ?>' )" />
-						</td><div style="display:none" class="rrp-loader" id="alert-loader-not-relevant-<?php print $alert['id']; ?>" ></div>
+						<div style="display:none" class="rrp-loader" id="alert-loader-not-relevant-<?php print $alert['id']; ?>" ></div>
 					</td>
-
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
@@ -207,49 +195,44 @@ class WP_Reputation_Radar_Alert {
 
 
 		<table id="rrp-alert-related" class="display" cellspacing="0" width="100%">
+
 			<thead>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
-				<th>Rate</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Url</th>
-				<th>Delete</th>
+				<th style="width:8%" >Partner Id</th>
+				<th  style="width:5%" >Keyword/Site</th>
+				<th  style="width:10%" >Company <br> Url</th>
+				<th style="width:7%" >Rate</th>
+				<th style="width:40%"  >Description</th>
+				<th style="width:10%" >Delete</th>
 			</tr>
 			</thead>
 			<tfoot>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
+				<th>Partner Id</th>
+				<th>Keyword</th>
+				<th>Company <br> Url</th>
 				<th>Rate</th>
-				<th>Title</th>
 				<th>Description</th>
-				<th>Url</th>
-				<th>Delete</th>
+				<th>delete/th>
 			</tr>
 			</tfoot>
+
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
-					<td> <?php print  $alert['id']; ?> </td>
-					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
-					<td> <?php print $alert['person_name']; ?> </td>
+					<td > <?php print  $alert['partner_id']; ?> </td>
+					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
+					<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
 					<td> <?php print  $alert['rate']; ?> </td>
-					<td> <?php print $alert['title']; ?> </td>
-					<td> <?php print $alert['description']; ?> </td>
-					<td> <?php print $alert['url']; ?> </td>
-
+					<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
 					<td>
 						<input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')" />
 						<div style="display:none" class="rrp-loader" id="alert-loader-delete-<?php print $alert['id']; ?>"  ></div>
 					</td>
-
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
+
 		</table>
 	<?php
 
@@ -262,39 +245,32 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-not-related" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
-				<th>Rate</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Url</th>
-				<th>Delete</th>
+				<th style="width:8%" >Partner Id</th>
+				<th  style="width:5%" >Keyword/Site</th>
+				<th  style="width:10%" >Company <br> Url</th>
+				<th style="width:7%" >Rate</th>
+				<th style="width:40%"  >Description</th>
+				<th style="width:10%" >Delete</th>
 			</tr>
 			</thead>
 			<tfoot>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
+				<th>Partner Id</th>
+				<th>Keyword</th>
+				<th>Company <br> Url</th>
 				<th>Rate</th>
-				<th>Title</th>
 				<th>Description</th>
-				<th>Url</th>
 				<th>Delete</th>
 			</tr>
 			</tfoot>
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
-				<tr id="rrp-alert-<?php print $alert['id']; ?>">
-					<td> <?php print  $alert['id']; ?> </td>
-					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
-					<td> <?php print $alert['person_name']; ?> </td>
-					<td> <?php print  $alert['rate']; ?> </td>
-					<td> <?php print $alert['title']; ?> </td>
-					<td> <?php print $alert['description']; ?> </td>
-					<td> <?php print $alert['url']; ?> </td>
-				 <td>
+				<td > <?php print  $alert['partner_id']; ?> </td>
+				<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
+				<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
+				<td> <?php print  $alert['rate']; ?> </td>
+				<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
+				<td>
 					 <input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')" />
 					 <div style="display:none" class="rrp-loader" id="alert-loader-delete-<?php print $alert['id']; ?>"  ></div>
 				 </td>
