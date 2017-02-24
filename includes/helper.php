@@ -23,6 +23,17 @@ function rrp_settings_get_current_user_url()
  	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . $user_id );
  	return (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 }
+
+
+function rrp_settings_get_specific_company_url_by_partner_id($partner_id)
+{
+	$rrp_queries = new RRP_QUERIES('wp_reputation_radar_settings');
+	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where partner_id = " . $partner_id );
+	return (empty($settings[0]['url'])) ? null : $settings[0]['url'];
+}
+
+
+
 function dd($str)
 {
 	print "<pre>";
@@ -135,7 +146,7 @@ function rrp_as_is_localhost() {
 }
 function rrp_is_limit_str($str, $limit=10) {
 	if (strlen($str) > $limit)
-		$str = substr($str, 0, 7) . '...';
+		$str = substr($str, 0, $limit) . '...';
 
 
 	return $str ;

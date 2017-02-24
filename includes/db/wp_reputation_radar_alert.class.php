@@ -101,46 +101,33 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-init" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
-				<th>Rate</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Url</th>
-				<th>Relevant</th>
-				<th>Not Relevant</th>
+				<th style="width:10%" >Partner Id</th>
+				<th  style="width:20%" >Company <br> Url</th>
+				<th style="width:10%" >Rate</th>
+				<th style="width:40%"  >Description</th>
+				<th>Relevant <br> Not Relevant</th>
 			</tr>
 			</thead>
 			<tfoot>
 			<tr>
-				<th>Id</th>
-				<th>Company Url</th>
-				<th>Name</th>
+				<th >Partner Id</th>
 				<th>Rate</th>
-				<th>Title</th>
+				<th>>Company <br> Url</th>
 				<th>Description</th>
-				<th>Url</th>
-				<th>Relevant</th>
-				<th>Not Relevant</th>
+				<th>Relevant <br> Not Relevant</th>
 			</tr>
 			</tfoot>
 			<tbody>
 			<?php foreach ($partnersAlertInit as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
-					<td> <?php print  $alert['id']; ?> </td>
-					<td> <?php print  rrp_settings_get_current_user_url($alert['partner_id']); ?> </td>
-					<td> <?php print  $alert['person_name']; ?> </td>
+					<td > <?php print  $alert['partner_id']; ?> </td>
+					<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
 					<td> <?php print  $alert['rate']; ?> </td>
-					<td> <?php print  $alert['title']; ?> </td>
-					<td> <?php print  $alert['description']; ?> </td>
-					<td>  <?php print $alert['url']; ?> </td>
+					<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
 					<td>
 						<input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelatedByAgent('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )"/>
 						<div style="display:none" class="rrp-loader" id="alert-loader-relevant-<?php print $alert['id']; ?>"  ></div>
-
-					</td>
-					<td>
+						<br>
 						<input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertToNotRelatedByAgent('<?php print $alert['id']; ?>',  '#alert-loader-not-relevant-<?php print $alert['id']; ?>')"/>
 						<div style="display:none" class="rrp-loader" id="alert-loader-not-relevant-<?php print $alert['id']; ?>" ></div>
 					</td>
