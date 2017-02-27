@@ -31,10 +31,18 @@ function wpdocs_theme_name_scripts() {
    	$.noConflict();
   	jQuery( document ).ready(function( $ ) {
 		$('#this-is-jus-a-testing-for-data-tables').DataTable();
-		$('#rrp-alert-init').DataTable();
-		$('#rrp-alert-all').DataTable();
-		$('#rrp-alert-related').DataTable();
-		$('#rrp-alert-not-related').DataTable();
+		$('#rrp-alert-init').DataTable({
+			"order": [[0, "desc" ]]
+		});
+		$('#rrp-alert-all').DataTable({
+			"order": [[0, "desc" ]]
+		});
+		$('#rrp-alert-related').DataTable({
+			"order": [[0, "desc" ]]
+		});
+		$('#rrp-alert-not-related').DataTable({
+			"order": [[0, "desc" ]]
+		});
 	});
 
 

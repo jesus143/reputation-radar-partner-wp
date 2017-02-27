@@ -92,15 +92,11 @@ class WP_Reputation_Radar_Alert {
 	// ui
 	public function uiAlertInit($partnersAlertInit)
 	{
-
-
 		?>
-
-
-
 		<table id="rrp-alert-init" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
+				<th style="width:5%" >Id</th>
 				<th style="width:10%" >Partner Id</th>
 				<th  style="width:10%" >Keyword/Site </th>
 				<th  style="width:20%" >Company <br> Url</th>
@@ -111,6 +107,7 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
 				<th>Partner Id</th>
 				<th>Keyword/Site</th>
 				<th>Company <br> Url</th>
@@ -122,6 +119,8 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach ($partnersAlertInit as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+
+					<td> <?php print  $alert['id']; ?> </td>
 					<td> <?php print  $alert['partner_id']; ?> </td>
 					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
 					<td> <?php print rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
@@ -148,6 +147,7 @@ class WP_Reputation_Radar_Alert {
 			<thead>
 			<tr>
 			<tr>
+				<th style="width:5%" >Id</th>
 				<th style="width:4%" >Partner Id</th>
 				<th  style="width:4%" >Keyword/Site</th>
 				<th  style="width:10%" >Company <br> Url</th>
@@ -158,6 +158,7 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
 				<th>Partner Id</th>
 				<th>Keyword</th>
 				<th>Company <br> Url</th>
@@ -169,6 +170,7 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td> <?php print  $alert['id']; ?> </td>
 					<td > <?php print  $alert['partner_id']; ?> </td>
 					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
 					<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
@@ -198,6 +200,7 @@ class WP_Reputation_Radar_Alert {
 
 			<thead>
 			<tr>
+				<th style="width:5%" >Id</th>
 				<th style="width:8%" >Partner Id</th>
 				<th  style="width:5%" >Keyword/Site</th>
 				<th  style="width:10%" >Company <br> Url</th>
@@ -208,6 +211,7 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
 				<th>Partner Id</th>
 				<th>Keyword</th>
 				<th>Company <br> Url</th>
@@ -220,6 +224,7 @@ class WP_Reputation_Radar_Alert {
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td> <?php print  $alert['id']; ?> </td>
 					<td > <?php print  $alert['partner_id']; ?> </td>
 					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
 					<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
@@ -245,6 +250,7 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-not-related" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
+				<th style="width:5%" >Id</th>
 				<th style="width:8%" >Partner Id</th>
 				<th  style="width:5%" >Keyword/Site</th>
 				<th  style="width:10%" >Company <br> Url</th>
@@ -255,6 +261,7 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>Id</th>
 				<th>Partner Id</th>
 				<th>Keyword</th>
 				<th>Company <br> Url</th>
@@ -265,6 +272,7 @@ class WP_Reputation_Radar_Alert {
 			</tfoot>
 			<tbody>
 			<?php foreach($partnersAlertAll as $alert): ?>
+				<td> <?php print  $alert['id']; ?> </td>
 				<td > <?php print  $alert['partner_id']; ?> </td>
 				<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
 				<td > <?php print  rrp_settings_get_specific_company_url_by_partner_id($alert['partner_id']); ?> </td>
