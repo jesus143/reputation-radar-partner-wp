@@ -27,12 +27,12 @@ class WP_Reputation_Radar_Alert {
 
 	public function getPartnersAlertInit($partner_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where status = 0");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where status = 0 order by id desc");
 		return $alerts;
 	}
 	public function getPartnersAlertAll($partner_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 1");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 1 ");
 		return $alerts;
 	}
 

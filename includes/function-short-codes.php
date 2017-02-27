@@ -110,24 +110,13 @@ function rrp_alert_agent_func()
     $partner_id              = 1486755452;
     $alert                   = new App\WP_Reputation_Radar_Alert();
     $partnersAlertInit        = $alert->getPartnersAlertInit($partner_id);
-
-
     //    dd($partnersAlertAll);
-
     rrp_script_and_style();
-
   ?>
-
-
-
-
-
   <br><br><br>
    <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
     <br>
-
       <h3> Display Alerts </h3>
-
       <div class="row">
         <div class="col-md-12">
             <?php $alert->uiAlertInit($partnersAlertInit); ?>
@@ -136,7 +125,6 @@ function rrp_alert_agent_func()
     </div>
     <?php
     }
-
 function rrp_alert_data_tables_test_func()
 {
 

@@ -35,7 +35,11 @@ function wpdocs_theme_name_scripts() {
 		$('#rrp-alert-all').DataTable();
 		$('#rrp-alert-related').DataTable();
 		$('#rrp-alert-not-related').DataTable();
-		});
+	});
+
+
+
+
 	</script>
 
    <?php
