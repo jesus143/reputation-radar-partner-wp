@@ -62,6 +62,7 @@ function rrp_table_install()
         status smallint(2) NOT NULL,
         comment text NOT NULL,
         rate varchar(50) NOT NULL,
+        keyword varchar(255) NOT NULL,
         updated_at datetime NOT NULL,
         created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		PRIMARY KEY  (id)

@@ -8,7 +8,11 @@
 
 namespace APP;
 
-//use nice\test;
+/**
+ * Class RRP_QUERIES
+ * @package APP
+ * @src http://wordpress.stackexchange.com/questions/1604/using-wpdb-to-connect-to-a-separate-database
+ */
 
 class RRP_QUERIES
 {

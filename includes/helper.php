@@ -32,6 +32,15 @@ function rrp_settings_get_specific_company_url_by_partner_id($partner_id)
 	return (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 }
 
+function rrp_alert_get_scraped_keyword_by_partner_id($alert_id)
+{
+	$rrp_queries = new RRP_QUERIES('wp_reputation_radar_alert');
+	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_alert where id = " . $alert_id);
+	$keyword = (empty($settings[0]['keyword'])) ? null : $settings[0]['keyword'];
+	return $keyword;
+}
+
+
 function rrp_settings_get_specific_company_search_keyword_by_partner_id($partner_id, $alert_id, $rating)
 {
 	if($rating > 0) {
@@ -54,7 +63,7 @@ function rrp_settings_get_specific_company_search_keyword_by_partner_id($partner
 		$url = (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 		$title = (empty($settings[0]['title'])) ? null : $settings[0]['title'];
 
- 
+
 
 		return " <a href='"  . $url . "' target='_blank' >  " . $title . " </a>";
 
@@ -211,4 +220,34 @@ function rrp_script_and_style()
 
 
 	<?php
+}
+
+
+function rrp_time_elapsed_string($datetime, $full = false) {
+	$now = new DateTime;
+	$ago = new DateTime($datetime);
+	$diff = $now->diff($ago);
+
+	$diff->w = floor($diff->d / 7);
+	$diff->d -= $diff->w * 7;
+
+	$string = array(
+			'y' => 'year',
+			'm' => 'month',
+			'w' => 'week',
+			'd' => 'day',
+			'h' => 'hour',
+			'i' => 'minute',
+			's' => 'second',
+	);
+	foreach ($string as $k => &$v) {
+		if ($diff->$k) {
+			$v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+		} else {
+			unset($string[$k]);
+		}
+	}
+
+	if (!$full) $string = array_slice($string, 0, 1);
+	return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
