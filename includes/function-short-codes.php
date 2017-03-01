@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+* Display settings of the partner in testing
+*/
 function rrp_settings_func() {
 
     rrp_script_and_style();
@@ -43,6 +45,9 @@ function rrp_settings_func() {
 <?php 
 }
 
+/**
+* Display partner scraped status and already validated with agent as relevant
+*/
 function rrp_alert_partner_func() {
 
 
@@ -105,6 +110,10 @@ function rrp_alert_partner_func() {
   <?php
 }
 
+/**
+* Display all the alert that is being scraped and needs for agent to rate relevant or none relevant in order to display
+* scraped data to partners alert
+*/
 function rrp_alert_agent_func()
  {
     $partner_id              = 1486755452;
@@ -125,6 +134,10 @@ function rrp_alert_agent_func()
     </div>
     <?php
     }
+
+/**
+* testing only
+*/
 function rrp_alert_data_tables_test_func()
 {
 
@@ -613,5 +626,110 @@ function rrp_alert_data_tables_test_func()
             </tr>
         </tbody>
     </table>
+    <?php
+}
+
+/**
+* allow agent manage all the partner's rating sites
+*/
+function rrp_patners_list_agent_func()
+{
+     $ratingSites = [];
+     $ratingSite  = [];
+     $rating_site = new App\WP_Reputation_Radar_Rating_Site();
+     $partnerIds = [12345,54321,67890,98761];
+     $partner_id = (!empty($_GET['partner_id'])) ? $_GET['partner_id'] : null;
+
+
+     // Submit create new rating site and trigger save data
+     if (isset($_POST['rating_site_add'])) {
+        $rating_site->create(['url'=>$_POST['url'], 'partner_id'=>$_POST['partner_id']]);
+     }
+
+     // Click delete link and trigger delete data
+     else if($_GET['status'] == 'delete'){
+         $rating_site->delete($_GET['id']);
+     }
+
+     // Submit edit and post update
+     else if(isset($_POST['rating_site_update'])) {
+
+        $rating_site->update($_POST['id'], ['url'=>$_POST['url']]);
+
+        rrp_redirect(rrp_partner_id_list_url . '/?partner_id=' . $_POST['partner_id']);
+
+     }
+
+   if(empty($partner_id)) {?>
+    <br><br><br>
+    <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+    <br>
+      <h3> Display partners </h3>
+      <div class="row">
+        <div class="col-md-12">
+            <?php $rating_site->uiPartnersList($partnerIds); ?>
+        </div>
+      </div>
+    </div>
+    <?php
+    }
+    else if($_GET['status'] == 'edit')
+    {
+
+        if(!empty($_GET['id'])){
+            $ratingSite  = $rating_site->getRating($_GET['id']);
+        }
+
+    ?>
+        <br><br><br>
+        <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+        <br>
+          <h3> Edit partner Info </h3>
+          <div class="row">
+              <div class="col-md-12">
+                <h3>Edit Rating Site for partner id <?php print $partner_id; ?></h3>
+                 <?php $rating_site->uiPartnerEditRattingSiteForm($ratingSite); ?>
+            </div>
+          </div>
+        </div>
+    <?php
+    } else {
+
+         // if manage mode
+         if(!empty($partner_id)){
+              $ratingSites  = $rating_site->getRatings($partner_id);
+         }
+        // dd($ratingSites);
+    ?>
+       <br><br><br>
+        <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+        <br>
+          <h3> Manage partner information </h3>
+          <div class="row">
+            <div class="col-md-12">
+                <?php $rating_site->uiPartnersRatingSiteList($ratingSites); ?>
+            </div>
+
+           <br>
+            <hr>
+            <br>
+
+
+              <div class="col-md-12">
+                <h3>Add New Rating Site for partner id <?php print $partner_id; ?></h3>
+                 <?php $rating_site->uiPartnerAddRattingSiteForm($partner_id); ?>
+            </div>
+          </div>
+        </div>
+
+
+           <br><br><br>
+    <a href="<?php print rrp_partner_id_list_url;  ?>">
+        <button class="alert alert-info">Back To Partner's List</button>
+    </a>
+    <?php
+    }
+    ?>
+
     <?php
 }

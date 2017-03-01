@@ -36,6 +36,7 @@ class Single_Post_Meta_Manager {
 
         require_once plugin_dir_path( __FILE__ ) . 'db/wpdb_queries.class.php';
         require_once plugin_dir_path( __FILE__ ) . 'db/wp_reputation_radar_alert.class.php';
+        require_once plugin_dir_path( __FILE__ ) . 'db/wp_reputation_radar_rating_sites.class.php';
         require_once plugin_dir_path( __FILE__ ) . 'db/wp_reputation_radar_settings.class.php';
         require_once plugin_dir_path( __FILE__ ) . '/initialized.php';
         require_once plugin_dir_path( __FILE__ ) . '/helper.php';
@@ -43,13 +44,16 @@ class Single_Post_Meta_Manager {
         require_once plugin_dir_path( __FILE__ ) . '/function-action-codes.php';
         require_once plugin_dir_path( __FILE__ ) . '/function-post-codes.php'; 
         require_once plugin_dir_path( __FILE__ ) . '/function-hook-codes.php';
-
-
-
     }
     private function define_variables() {
         define('rrp_site_url', get_site_url() . '/wp-content/plugins/reputation-radar-partner/');
+
         define('rrp_site_dir_includes', plugin_dir_path( __FILE__ ));
+
+        define('rrp_site', get_site_url());
+
+
+        define("rrp_partner_id_list_url", rrp_site . '/reputation-radar-partners-agent');
     }
     private function define_admin_hooks()
     {
@@ -69,6 +73,7 @@ class Single_Post_Meta_Manager {
         add_shortcode("rrp_settings", 'rrp_settings_func');
         add_shortcode("rrp_alert_partner", 'rrp_alert_partner_func');
         add_shortcode("rrp_alert_agent", 'rrp_alert_agent_func');
+        add_shortcode("rrp_patners_list_agent", 'rrp_patners_list_agent_func');
         add_shortcode("rrp_alert_data_tables_test", 'rrp_alert_data_tables_test_func');
     }
 

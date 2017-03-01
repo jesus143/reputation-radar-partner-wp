@@ -23,8 +23,6 @@ class WP_Reputation_Radar_Alert {
 			$this->rrp_queries = new RRP_QUERIES('wp_reputation_radar_alert'); 
 	}
 
-
-
 	public function getPartnersAlertInit($partner_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where status = 0 order by id desc");
@@ -311,5 +309,6 @@ class WP_Reputation_Radar_Alert {
 	<?php
 
 	}
+
 }
 
