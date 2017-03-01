@@ -14,6 +14,8 @@ function rrp_settings_get_current_user_keyword()
  	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . rrp_get_authenticated_user_id());
  	return (empty($settings[0]['company_search_keyword'])) ? null : $settings[0]['company_search_keyword'];
 }
+
+
 function rrp_settings_get_current_user_url()
 {
 
@@ -23,6 +25,17 @@ function rrp_settings_get_current_user_url()
  	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . $user_id );
  	return (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 }
+
+
+function rrp_setting_get_current_user_keyword_setting()
+{
+	$user_id = rrp_get_authenticated_user_id();
+
+	$rrp_queries = new RRP_QUERIES('wp_reputation_radar_settings');
+	$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . $user_id );
+	return (empty($settings[0]['keyword_setting'])) ? null : $settings[0]['keyword_setting'];
+}
+
 
 
 function rrp_settings_get_specific_company_url_by_partner_id($partner_id)

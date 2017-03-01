@@ -6,8 +6,7 @@
 function rrp_settings_func() {
 
     rrp_script_and_style();
-
-
+    $keyword_setting = rrp_setting_get_current_user_keyword_setting();
  ?>
 
 
@@ -28,14 +27,25 @@ function rrp_settings_func() {
                 <div class="form-group">
 
                     <?php //print " user_id " . rrp_get_authenticated_user_id(); ?>
-                  <labl class="label" style="color:black"> Company Search Keyword </labl><br><br>
+                  <label class="label" style="color:black"> Company Search Keyword </label><br><br>
                   <input type="text" style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_keyword(); ?>" name="company_search_keyword" />
-                  <hr>
-                  <labl class="label" style="color:black"> Company Url</labl><br><br>
-                  <input type="text"  style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
-                  <br/>
-                  <input type="submit" value="Update" class="alert alert-info" name="rrp_post_settings"  /> 
 
+                  <hr>
+                  <label class="label" style="color:black"> Company Url</label><br><br>
+                  <input type="text"  style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
+
+                  <hr>
+                  <label class="label" style="color:black">Choose Keyword Settings</label><br><br>
+                    <select name="keyword_setting" class="form-control" >
+                        <option value="Broad match"             <?php print ($keyword_setting == 'Broad match') ? 'selected' : null; ?>            >Broad match (keywod) - "Broad match is the default match type that all your keywords are assigned"</option>
+                        <option value="Broad match modifier"    <?php print ($keyword_setting == 'Broad match modifier') ? 'selected' : null; ?>   >Broad match modifier (+keywod) - "Ads may show on searches that contain the modified term (or close variations, but not synonyms), in any order."</option>
+                        <option value="Phrase match"            <?php print ($keyword_setting == 'Phrase match') ? 'selected' : null; ?>           >Phrase match ("keywod") - "Ads may show on searches that are a phrase, and close variations of that phrase."</option>
+                        <option value="Exact match"             <?php print ($keyword_setting == 'Exact match') ? 'selected' : null; ?>            >Exact match ([keyword]) - "Ads may show on searches that are an exact term and close variations of that exact term." </option>
+                        <option value="Negative match"          <?php print ($keyword_setting == 'Negative match') ? 'selected' : null; ?>         >Negative match (-keyword) - "Ads may show on searches without the term."</option>
+                    </select>
+
+                  <br/>
+                  <input type="submit" value="Update" class="alert alert-info" name="rrp_post_settings"  />
                   </form>
                 </div> 
             </div>  
