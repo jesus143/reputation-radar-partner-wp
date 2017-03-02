@@ -17,6 +17,7 @@ namespace APP;
 class RRP_QUERIES
 {
     private $table_name = 'wp_reputation_radar_settings';
+    private $wpdb;
 
     /**
      * WPDB_QUERIES constructor.
@@ -24,10 +25,25 @@ class RRP_QUERIES
      */
     function __construct($table_name=null)
     {
-        //$t = new test();
-        //$t->testighrere();
+        // set table name
         $this->table_name = $table_name;
+
+
+
+
+        // database connection
+        global $database;
+        $this->database =  $database;
     }
+
+
+
+    private function connect($user, $pass, $db, $host)
+    {
+
+//        return $mydb;
+    }
+
 
     /**
      * @param $query_string
@@ -38,8 +54,8 @@ class RRP_QUERIES
      * @Return $output_type
      */
     public function wpdb_get_result($query_string, $output_type=ARRAY_A) {
-        global $wpdb;
-        return $wpdb->get_results($query_string, $output_type );
+
+        return $this->database->get_results($query_string, $output_type );
     }
 
     /**
@@ -55,11 +71,11 @@ class RRP_QUERIES
      * @return bool
      */
     public function wpdb_update($data_array=array(), $where) {
-        global $wpdb; 
+
         // print "<pre>";
         // print_r($data_array);
         // print "</pre>";
-        $trows = $wpdb->update(
+        $trows = $this->database->update(
             $this->table_name, 
             $data_array,
             $where,
@@ -78,8 +94,8 @@ class RRP_QUERIES
      * @return bool
      */
     public function wpdb_delete($where=array()) {
-        global $wpdb;
-        $trows = $wpdb->delete(
+
+        $trows = $this->database->delete(
             $this->table_name,
             $where,
             $this->wpdb_get_value_type($where)
@@ -104,7 +120,7 @@ class RRP_QUERIES
             $wpdb = $conn;
         }
 
-        $trows = $wpdb->insert(
+        $trows = $this->database->insert(
                 $this->table_name,
             $data_array,
             $this->wpdb_get_value_type($data_array)

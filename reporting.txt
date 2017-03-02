@@ -91,10 +91,66 @@ set none related by partner = 3
 
 
 
+Update for March 2, 2017
+
+1. Install plugin to reputationradara
+
+2. Fix conditions and scrapping work propperly in rating site
+
+3. Setup cronjobs for rating site, and scrapping for rating sites and google is now both working. currently we have https://uk.trustpilot.com and http://www.reviewcentre.com working.
+
+4. Make reputation radar connect with testing database and able to manage with agent alerts and partner ids - done
+
+5. Add short codes for alert agent and partner ids in reputation site
+
+6. Make the pages full width in reputation site
+
+7. Fix issue in duplicates for rating sites in scrapping via cronjobs
+
+8. Do testing from online and setup
+
+
+9. Partner can change settings here for google search, added already the google keyword settings
+https://testing.umbrellasupport.co.uk/reputation-radar
+
+10. Partner can see all of his alerts here
+https://testing.umbrellasupport.co.uk/reputation-radar-alert
+
+11. Agent can manage here the rating sites
+http://reputationradar.umbrellasupport.co.uk/reputation-radar-partners-agent/
+
+12. Agent can see all the alerts and validate if its relevant or not relevant
+http://reputationradar.umbrellasupport.co.uk/reputation-radar-alert-agent/
+
+
+13. http://reputationradar.umbrellasupport.co.uk/wp-login.php
+user: admin
+pass: admin
+
+- currently we have issue with plugin in reputationradar, so after you logged in it should just show white screen and please ignore and you
+  can just directly visit this links below
+
+  http://reputationradar.umbrellasupport.co.uk/reputation-radar-alert-agent/
+  or
+  http://reputationradar.umbrellasupport.co.uk/reputation-radar-partners-agent/
 
 
 
+Issue found, todo and solutions
 
+1. need to get all the partners id via ontraport query, will ask code for this to the guys
 
+2. fix in batch table row index is causing table not generated when activated the plugin and it must be
+change to "index_pos" and update scrapping index there to "index_pos" in order to work.
 
+3. fix issue in reputation radar, plugin conflic and blocked creating new page of the site.
 
+4. create admin dashboard of the plugin
+
+5. allow database setup in admin view of the plugin
+
+6. add all the pages and shortcodes and documentation in the plugin dashboard
+
+7. create code that will block the non related site, to prevent comming to alert again
+
+8. in rating site needs to show the actual company url, not just rating site.

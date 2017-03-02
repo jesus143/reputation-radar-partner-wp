@@ -16,6 +16,27 @@ class Single_Post_Meta_Manager {
         $this->load_files();
         $this->define_variables();
         $this->default_fields();
+        $this->connect();
+
+    }
+
+    private function connect()
+    {
+        global $database;
+        global $wpdb;
+        $url = rrp_get_current_site_url_full();
+//        print "This is the url <br><br><br><br>" . $url;
+        $pos = strpos($url, 'putationradar.umbrellasupport.co.uk');
+
+//        print "position " . $pos;
+//        exit;
+        if($pos < 1) {
+            $database = $wpdb;
+        } else {
+            // $database = new wpdb('root', '1234567890', 'practice_wordpress', 'localhost');
+            $database = new wpdb('dbo639369002', '1qazxsw2!QAZXSW@', 'db639369002', 'db639369002.db.1and1.com');
+        }
+
     }
 
     private function default_fields()
@@ -26,6 +47,7 @@ class Single_Post_Meta_Manager {
     }
     private function load_dependencies() {
 
+        require_once( ABSPATH . "wp-includes/wp-db.php");
         require_once( ABSPATH . "wp-includes/link-template.php");
         require_once( ABSPATH . "wp-includes/user.php");
         require_once( ABSPATH . "wp-includes/pluggable.php");

@@ -147,7 +147,7 @@ function rrp_as_get_ontraport_info()
 
 	//$API_RESULT   = query_api_call($postargs, $API_ID, $API_KEY);
 
-	$API_RESULT = bpc_as_op_query($API_URL, 'GET', $API_DATA, $API_ID, $API_KEY);
+	$API_RESULT = rrp_as_op_query($API_URL, 'GET', $API_DATA, $API_ID, $API_KEY);
 
 	$getName    = json_decode($API_RESULT);
 
@@ -165,7 +165,7 @@ function rrp_as_get_ontraport_info()
 	);
 
 	//GET PUT RESULT
-	return bpc_as_op_query( $API_URL, $method, $API_UDATA, $API_ID, $API_KEY );
+	return rrp_as_op_query( $API_URL, $method, $API_UDATA, $API_ID, $API_KEY );
 }
 function rrp_as_op_query($url, $method, $data, $appID, $appKey){
 	$ch = curl_init( );

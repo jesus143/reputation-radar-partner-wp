@@ -201,8 +201,8 @@ class WP_Reputation_Radar_Rating_Site
 	{ ?>
 		<form  action="<?php print rrp_get_current_site_url_full(); ?>" method="POST" >
 			<div class="form-group">
-				<label for="exampleInputEmail1">Edit Rating</label>
-				<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Place the rating site url here.." name="url" value="<?php print $ratingSite[0]['url']; ?>" >
+				<label   for="exampleInputEmail1">Edit Rating</label>
+				<input  style="width:96%"  type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Place the rating site url here.." name="url" value="<?php print $ratingSite[0]['url']; ?>" >
 				<input type="hidden" value="<?php print $ratingSite[0]['id']; ?>" name="id" />
 				<input type="hidden" value="<?php print $ratingSite[0]['partner_id']; ?>" name="partner_id" /> 
 			</div>

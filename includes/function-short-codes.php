@@ -36,7 +36,7 @@ function rrp_settings_func() {
 
                   <hr>
                   <label class="label" style="color:black">Choose Keyword Settings</label><br><br>
-                    <select name="keyword_setting" class="form-control" >
+                    <select name="keyword_setting" class="form-control"  style="width:98%" >
                         <option value="Broad match"             <?php print ($keyword_setting == 'Broad match') ? 'selected' : null; ?>            >Broad match (keywod) - "Broad match is the default match type that all your keywords are assigned"</option>
                         <option value="Broad match modifier"    <?php print ($keyword_setting == 'Broad match modifier') ? 'selected' : null; ?>   >Broad match modifier (+keywod) - "Ads may show on searches that contain the modified term (or close variations, but not synonyms), in any order."</option>
                         <option value="Phrase match"            <?php print ($keyword_setting == 'Phrase match') ? 'selected' : null; ?>           >Phrase match ("keywod") - "Ads may show on searches that are a phrase, and close variations of that phrase."</option>
@@ -647,7 +647,7 @@ function rrp_patners_list_agent_func()
      $ratingSites = [];
      $ratingSite  = [];
      $rating_site = new App\WP_Reputation_Radar_Rating_Site();
-     $partnerIds = [12345,54321,67890,98761];
+     $partnerIds = [77514,79446,68805];
      $partner_id = (!empty($_GET['partner_id'])) ? $_GET['partner_id'] : null;
 
 

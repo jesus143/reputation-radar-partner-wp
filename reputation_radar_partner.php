@@ -20,7 +20,9 @@
  * reputation-radar-alert-agent  - shortcode -> [rrp_alert_agent]
  */
 
-error_reporting(0);
+ob_start();
+
+error_reporting(1);
 
 if ( ! defined( 'WPINC' ) ) {
     die;
@@ -95,7 +97,7 @@ function rrp_table_install()
     $table_name = $wpdb->prefix . 'reputation_radar_setting_batch';
     $sql4 = "CREATE TABLE $table_name (
 		id int(11) NOT NULL AUTO_INCREMENT, 
-        index int(11) NOT NULL, 
+        index_pos int(11) NOT NULL,
         updated_at datetime NOT NULL,
         created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		PRIMARY KEY  (id)
@@ -109,3 +111,5 @@ function rrp_table_install()
 
     add_option('jal_db_version', $jal_db_version);
 }
+
+ob_flush();
