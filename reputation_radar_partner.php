@@ -20,9 +20,6 @@
  * reputation-radar-alert-agent  - shortcode -> [rrp_alert_agent]
  */
 
-ob_start();
-
-error_reporting(1);
 
 if ( ! defined( 'WPINC' ) ) {
     die;
@@ -111,5 +108,3 @@ function rrp_table_install()
 
     add_option('jal_db_version', $jal_db_version);
 }
-
-ob_flush();

@@ -59,13 +59,71 @@ function rrp_admin_menu() {
 
 /** Step 3. */
 function rrp_plugin_options() {
-	if ( !current_user_can( 'manage_options' ) )  {
-		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	if(isset($_POST['rrp_db_submit'])) {
+		update_option('rrp_db', $_POST['rrp_db']);
+		update_option('rrp_db_user', $_POST['rrp_db_user']);
+		update_option('rrp_db_pass', $_POST['rrp_db_pass']);
+		update_option('rrp_db_host', $_POST['rrp_db_host']);
+		?>
+		<br><br><br>
+			<div style="color:green; background-color: white; padding:5px; width:50%">
+				External database successfully update!
+			</div>
+	 	<?php
 	}
-	echo '<div class="wrap">';
-	echo '<p>This is the settings for reputation radar partner</p>';
-	echo '	<br>rrp_settings - this is the page where settings show and your were able to update<br>
-			<br>rrp_alert_partner - this is the page where all the scraped data will show<br>
-			<br>rrp_alert_agent - this is the page where agent can see all the pending alerts<br>';
-	echo '</div>';
+	$rrp_db      = (get_option('rrp_db')) ? get_option('rrp_db') : null;
+	$rrp_db_user = (get_option('rrp_db_user')) ? get_option('rrp_db_user') : null;
+	$rrp_db_pass = (get_option('rrp_db_pass')) ? get_option('rrp_db_pass') : null;
+	$rrp_db_host = (get_option('rrp_db_host')) ? get_option('rrp_db_host') : null;
+	?>
+		<div>
+			<h4>This database connection will connect to external database for partner alerts and so that our agent can manage the partner's alert</h4>
+			<form action="<?php print rrp_get_current_site_url_full(); ?>" method="post" >
+				<table class="table table-bordered">
+					<tbody>
+					<tr>
+						<td><label class="label">external db</label></td>
+						<td><input type="text" name="rrp_db" value="<?php print $rrp_db; ?>" /> <br></td>
+					</tr>
+					<tr>
+						<td><label class="label">external user</label></td>
+						<td><input type="text" name="rrp_db_user" value="<?php print $rrp_db_user; ?>" /> <br></td>
+					</tr>
+					<tr>
+						<td><label class="label">external pass</label></td>
+						<td><input type="text" name="rrp_db_pass" value="<?php print $rrp_db_pass; ?>" /><br></td>
+					</tr>
+					<tr>
+						<td><label class="label">external host</label></td>
+						<td><input type="text" name="rrp_db_host" value="<?php print $rrp_db_host; ?>" /><br></td>
+					</tr>
+					 <tr>
+						<td><input type="submit" value="update" name="rrp_db_submit" /></td>
+						<td> </td>
+					</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+		<hr>
+		<div>
+			<div class="wrap">
+				<p>This is the settings for reputation radar partner</p>
+				<br>rrp_settings - this is the page where settings show and your were able to update<br>
+				<br>rrp_alert_partner - this is the page where all the scraped data will show<br>
+				<br>rrp_alert_agent - this is the page where agent can see all the pending alerts<br>
+				<br>rrp_patners_list_agent - display all partners id and manage<br>
+			</div>
+		</div>
+	<?php
+}
+
+
+
+function print_site_url_hidden_field() {
+
+	?>
+	<input type="hidden" value="<?php print get_site_url(); ?>" id="rrp_ri_site_url"  />
+
+	<?php
 }

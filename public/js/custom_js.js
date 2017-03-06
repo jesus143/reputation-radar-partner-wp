@@ -1,13 +1,20 @@
 
 
-//$url = 'https://testing.umbrellasupport.co.uk/';
-$url = jQuery('#rrp_ri_site_url').val();  // 'http://localhost/practice/wordpress/';
+
+
+
+
+function getSiteUrl()
+{
+    return jQuery('#rrp_ri_site_url').val();
+}
+
 
 function updatePartnerAlertToNotRelatedByAgent(alert_id, loader)
 {
 
     jQuery(loader).css('display', 'block');
-    jQuery.get( $url + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_non_related.php", { alert_id: alert_id } )
+    jQuery.get( getSiteUrl() + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_non_related.php", { alert_id: alert_id } )
     .done(function( data ) {
         if(data.status  == 'success' ) {
             console.log("successfully rated to related");
@@ -20,9 +27,12 @@ function updatePartnerAlertToNotRelatedByAgent(alert_id, loader)
 
 function updatePartnerAlertToRelatedByAgent(alert_id, loader)
 {
+
+
+
     jQuery(loader).css('display', 'block');
 
-    jQuery.get( $url + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_related.php", { alert_id: alert_id } )
+    jQuery.get( getSiteUrl() + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_related.php", { alert_id: alert_id } )
     .done(function( data ) {
         if(data.status  == 'success' ) {
             console.log("successfully rated to related");
@@ -39,7 +49,7 @@ function updatePartnerAlertToRelated(alert_id, loader)
 {
 
     jQuery(loader).css('display', 'block');
-    jQuery.get( $url + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_related_non_related.php", { alert_id: alert_id, type:'related' } )
+    jQuery.get( getSiteUrl() + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_related_non_related.php", { alert_id: alert_id, type:'related' } )
     .done(function( data ) {
         if(data.status  == 'success' ) {
             console.log("successfully rated to related");
@@ -54,7 +64,7 @@ function updatePartnerAlertToRelated(alert_id, loader)
 function updatePartnerAlertNotToRelated(alert_id, loader)
 {
     jQuery(loader).css('display', 'block');
-    jQuery.get( $url + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_related_non_related.php", { 'alert_id': alert_id, type:'not related' } )
+    jQuery.get( getSiteUrl() + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_related_non_related.php", { 'alert_id': alert_id, type:'not related' } )
     .done(function( data ) {
         if(data.status  == 'success' ) {
             console.log("successfully rated to not related");
@@ -71,7 +81,7 @@ function deleteAlert(alert_id, loader)
 {
     jQuery(loader).css('display', 'block');
     if(confirm("Are you sure you want to delete this alert?")) {
-        jQuery.get( $url + "/wp-content/plugins/reputation-radar-partner/includes/ajax/alert-delete.php", { 'alert_id': alert_id } )
+        jQuery.get( getSiteUrl() + "/wp-content/plugins/reputation-radar-partner/includes/ajax/alert-delete.php", { 'alert_id': alert_id } )
         .done(function( data ) {
             console.log("done delet ");
             jQuery(loader).css('display', 'none');

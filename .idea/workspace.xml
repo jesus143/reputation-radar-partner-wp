@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8655b13-5a25-436a-b0d9-0f336f801b5b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-config.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/class-single-post-meta-manager.php" afterPath="$PROJECT_DIR$/includes/class-single-post-meta-manager.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/db/wp_reputation_radar_rating_sites.class.php" afterPath="$PROJECT_DIR$/includes/db/wp_reputation_radar_rating_sites.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/db/wpdb_queries.class.php" afterPath="$PROJECT_DIR$/includes/db/wpdb_queries.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/function-action-codes.php" afterPath="$PROJECT_DIR$/includes/function-action-codes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/function-short-codes.php" afterPath="$PROJECT_DIR$/includes/function-short-codes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/helper.php" afterPath="$PROJECT_DIR$/includes/helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reporting.txt" afterPath="$PROJECT_DIR$/reporting.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/custom_js.js" afterPath="$PROJECT_DIR$/public/js/custom_js.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reputation_radar_partner.php" afterPath="$PROJECT_DIR$/reputation_radar_partner.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.php" afterPath="$PROJECT_DIR$/test.php" />
     </list>
     <ignored path="reputation-radar-partner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,11 +40,84 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="reporting.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/reporting.txt">
+      <file leaf-file-name="function-short-codes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/function-short-codes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27465856">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="155" selection-end-column="77" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="function-action-codes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/function-action-codes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="function-post-codes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/function-post-codes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp_reputation_radar_alert.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/db/wp_reputation_radar_alert.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="124" column="80" selection-start-line="124" selection-start-column="80" selection-end-line="124" selection-end-column="80" />
+              <folding>
+                <marker date="1488300172496" expanded="true" signature="547:612" placeholder="select * fro..${$this-&gt;table_name}..." />
+                <marker date="1488300172496" expanded="true" signature="739:816" placeholder="select * fro..${$this-&gt;table_name}..." />
+                <marker date="1488300172496" expanded="true" signature="949:1026" placeholder="select * fro..${$this-&gt;table_name}..." />
+                <marker date="1488300172496" expanded="true" signature="1161:1238" placeholder="select * fro..${$this-&gt;table_name}..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/helper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+              <folding>
+                <marker date="1488567264384" expanded="true" signature="451:510" placeholder="select * fro..wp_reputation_radar_settings..." />
+                <marker date="1488567264384" expanded="true" signature="862:921" placeholder="select * fro..wp_reputation_radar_settings..." />
+                <marker date="1488567264384" expanded="true" signature="1222:1281" placeholder="select * fro..wp_reputation_radar_settings..." />
+                <marker date="1488567264384" expanded="true" signature="1578:1640" placeholder="select * fro..wp_reputation_radar_settings..." />
+                <marker date="1488567264384" expanded="true" signature="1901:1952" placeholder="select * fro..wp_reputation_radar_alert..." />
+                <marker date="1488567264384" expanded="true" signature="2304:2355" placeholder="select * fro..wp_reputation_radar_alert..." />
+                <marker date="1488567264384" expanded="true" signature="2707:2758" placeholder="select * fro..wp_reputation_radar_alert..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wpdb_queries.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/db/wpdb_queries.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class-single-post-meta-manager.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/includes/class-single-post-meta-manager.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5944056">
+              <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -65,7 +141,6 @@
       <list>
         <option value="$PROJECT_DIR$/includes/Single_Post_Meta_Manager.php" />
         <option value="$PROJECT_DIR$/includes/class-short-codes.php" />
-        <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/pages/page-alert-related.php" />
         <option value="$PROJECT_DIR$/pages/page-alert-not-related.php" />
         <option value="$PROJECT_DIR$/public/js/custom_js..js" />
@@ -80,21 +155,23 @@
         <option value="$PROJECT_DIR$/includes/ajax/rate_related_non_related.php" />
         <option value="$PROJECT_DIR$/includes/db/wp_reputation_radar_settings.class.php" />
         <option value="$PROJECT_DIR$/includes/ajax/config.php" />
-        <option value="$PROJECT_DIR$/public/js/custom_js.js" />
         <option value="$PROJECT_DIR$/public/css/bootstrap-3.3.7.js.css" />
         <option value="$PROJECT_DIR$/public/css/bootstrap-3.3.7.css" />
         <option value="$PROJECT_DIR$/public/css/bootstrap-custom.css" />
-        <option value="$PROJECT_DIR$/includes/function-action-codes.php" />
         <option value="$PROJECT_DIR$/public/css/custom_style.css" />
         <option value="$PROJECT_DIR$/includes/db/wp_reputation_radar_alert.class.php" />
         <option value="$PROJECT_DIR$/includes/function-post-codes.php" />
-        <option value="$PROJECT_DIR$/includes/function-short-codes.php" />
+        <option value="$PROJECT_DIR$/reporting.txt" />
+        <option value="$PROJECT_DIR$/wp-config reputation.php" />
+        <option value="$PROJECT_DIR$/reputation_radar_partner.php" />
+        <option value="$PROJECT_DIR$/includes/function-action-codes.php" />
+        <option value="$PROJECT_DIR$/public/js/custom_js.js" />
+        <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/includes/db/wp_reputation_radar_rating_sites.class.php" />
+        <option value="$PROJECT_DIR$/includes/function-short-codes.php" />
+        <option value="$PROJECT_DIR$/includes/helper.php" />
         <option value="$PROJECT_DIR$/includes/db/wpdb_queries.class.php" />
         <option value="$PROJECT_DIR$/includes/class-single-post-meta-manager.php" />
-        <option value="$PROJECT_DIR$/includes/helper.php" />
-        <option value="$PROJECT_DIR$/reputation_radar_partner.php" />
-        <option value="$PROJECT_DIR$/reporting.txt" />
       </list>
     </option>
   </component>
@@ -108,10 +185,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1366" />
+    <option name="height" value="768" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -138,8 +213,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -171,6 +244,10 @@
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -183,10 +260,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -224,6 +297,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -297,10 +372,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="0" width="1366" height="768" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19838946" sideWeight="0.4834254" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27525622" sideWeight="0.4834254" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -365,17 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="236" column="26" selection-start-line="236" selection-start-column="26" selection-end-line="236" selection-end-column="26" />
-          <folding>
-            <marker date="1488478403143" expanded="true" signature="451:510" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="862:921" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="1222:1281" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="1578:1640" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="1901:1952" placeholder="select * fro..wp_reputation_radar_alert..." />
-            <marker date="1488478403143" expanded="true" signature="2304:2355" placeholder="select * fro..wp_reputation_radar_alert..." />
-            <marker date="1488478403143" expanded="true" signature="2707:2758" placeholder="select * fro..wp_reputation_radar_alert..." />
-            <marker date="1488478403143" expanded="true" signature="3114:3176" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="3475:3508" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -383,15 +447,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="98" column="38" selection-start-line="98" selection-start-column="38" selection-end-line="98" selection-end-column="38" />
-          <folding>
-            <element signature="n#rrp_settings_func#0;n#!!top" expanded="false" />
-            <element signature="e#1340#1357#0#HTML" expanded="true" />
-            <element signature="e#1524#1543#0#HTML" expanded="true" />
-            <element signature="e#1657#1674#0#HTML" expanded="true" />
-            <element signature="n#rrp_alert_partner_func#0;n#!!top" expanded="false" />
-            <element signature="n#rrp_alert_agent_func#0;n#!!top" expanded="false" />
-            <element signature="n#rrp_alert_data_tables_test_func#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -421,16 +476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="305" column="26" selection-start-line="293" selection-start-column="20" selection-end-line="305" selection-end-column="26" />
-          <folding>
-            <element signature="e#2420#4558#0#PHP" expanded="false" />
-            <element signature="e#4560#6705#0#PHP" expanded="false" />
-            <element signature="e#6707#8473#0#PHP" expanded="false" />
-            <element signature="e#8475#10248#0#PHP" expanded="false" />
-            <marker date="1488300172496" expanded="true" signature="547:612" placeholder="select * fro..${$this-&gt;table_name}..." />
-            <marker date="1488300172496" expanded="true" signature="739:816" placeholder="select * fro..${$this-&gt;table_name}..." />
-            <marker date="1488300172496" expanded="true" signature="949:1026" placeholder="select * fro..${$this-&gt;table_name}..." />
-            <marker date="1488300172496" expanded="true" signature="1161:1238" placeholder="select * fro..${$this-&gt;table_name}..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -511,13 +556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reporting.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -557,20 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.69972825">
           <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/initialized.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -621,13 +645,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/custom_js.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75555557">
-          <caret line="76" column="50" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/bootstrap-custom.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.67971015">
@@ -639,13 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5304348">
           <caret line="4" column="84237" selection-start-line="4" selection-start-column="83283" selection-end-line="4" selection-end-column="84237" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/function-action-codes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26086956">
-          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -671,15 +681,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../../wp-config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4204851">
+          <caret line="79" column="23" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reporting.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24886191">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-config reputation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5872534">
+          <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reputation_radar_partner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84522">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding>
+            <marker date="1488562876954" expanded="true" signature="1227:1745" placeholder="CREATE TABLE..${$table_name}..." />
+            <marker date="1488562876954" expanded="true" signature="1842:2254" placeholder="CREATE TABLE..${$table_name}..." />
+            <marker date="1488562876954" expanded="true" signature="2360:2633" placeholder="CREATE TABLE..${$table_name}..." />
+            <marker date="1488562876954" expanded="true" signature="2735:2963" placeholder="CREATE TABLE..${$table_name}..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3323217">
+          <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/custom_js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33827493">
+          <caret line="61" column="1" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34366578">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/initialized.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/db/wp_reputation_radar_rating_sites.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3328841">
+          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
+          <folding>
+            <marker date="1488565929027" expanded="true" signature="635:649" placeholder="select * fro..${$this-&gt;table_name}..." />
+            <marker date="1488565929027" expanded="true" signature="882:953" placeholder="select * fro..${$this-&gt;table_name}..." />
+            <marker date="1488565929027" expanded="true" signature="1167:1230" placeholder="select * fro..${$this-&gt;table_name}..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/includes/db/wp_reputation_radar_alert.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6415094">
-          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="124" column="80" selection-start-line="124" selection-start-column="80" selection-end-line="124" selection-end-column="80" />
           <folding>
-            <element signature="e#2420#4558#0#PHP" expanded="false" />
-            <element signature="e#4560#6705#0#PHP" expanded="false" />
-            <element signature="e#6707#8473#0#PHP" expanded="false" />
-            <element signature="e#8475#10248#0#PHP" expanded="false" />
             <marker date="1488300172496" expanded="true" signature="547:612" placeholder="select * fro..${$this-&gt;table_name}..." />
             <marker date="1488300172496" expanded="true" signature="739:816" placeholder="select * fro..${$this-&gt;table_name}..." />
             <marker date="1488300172496" expanded="true" signature="949:1026" placeholder="select * fro..${$this-&gt;table_name}..." />
@@ -688,113 +774,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/function-post-codes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26684636">
-          <caret line="17" column="54" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="54" />
-          <folding>
-            <marker date="1488385242842" expanded="true" signature="543:602" placeholder="select * fro..wp_reputation_radar_settings..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/function-short-codes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26684636">
-          <caret line="700" column="47" selection-start-line="700" selection-start-column="47" selection-end-line="700" selection-end-column="47" />
-          <folding>
-            <element signature="n#rrp_settings_func#0;n#!!top" expanded="false" />
-            <element signature="e#1340#1357#0#HTML" expanded="true" />
-            <element signature="e#1524#1543#0#HTML" expanded="true" />
-            <element signature="e#1657#1674#0#HTML" expanded="true" />
-            <element signature="n#rrp_alert_partner_func#0;n#!!top" expanded="false" />
-            <element signature="n#rrp_alert_agent_func#0;n#!!top" expanded="false" />
-            <element signature="n#rrp_alert_data_tables_test_func#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/db/wp_reputation_radar_rating_sites.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51212937">
-          <caret line="198" column="7" selection-start-line="198" selection-start-column="7" selection-end-line="198" selection-end-column="7" />
-          <folding>
-            <marker date="1488473418110" expanded="true" signature="635:649" placeholder="select * fro..${$this-&gt;table_name}..." />
-            <marker date="1488473418110" expanded="true" signature="882:953" placeholder="select * fro..${$this-&gt;table_name}..." />
-            <marker date="1488473418110" expanded="true" signature="1167:1230" placeholder="select * fro..${$this-&gt;table_name}..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reputation_radar_partner.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61958045">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding>
-            <marker date="1488478723755" expanded="true" signature="1260:1778" placeholder="CREATE TABLE..${$table_name}..." />
-            <marker date="1488478723755" expanded="true" signature="1875:2287" placeholder="CREATE TABLE..${$table_name}..." />
-            <marker date="1488478723755" expanded="true" signature="2393:2666" placeholder="CREATE TABLE..${$table_name}..." />
-            <marker date="1488478723755" expanded="true" signature="2768:2996" placeholder="CREATE TABLE..${$table_name}..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-single-post-meta-manager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73706293">
-          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/db/wpdb_queries.class.php">
+    <entry file="file://$PROJECT_DIR$/includes/function-action-codes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42937064">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <marker date="1488477136688" expanded="true" signature="1442:1502" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/function-post-codes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/helper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.047552448">
-          <caret line="149" column="33" selection-start-line="149" selection-start-column="33" selection-end-line="149" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
           <folding>
-            <marker date="1488478403143" expanded="true" signature="451:510" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="862:921" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="1222:1281" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="1578:1640" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="1901:1952" placeholder="select * fro..wp_reputation_radar_alert..." />
-            <marker date="1488478403143" expanded="true" signature="2304:2355" placeholder="select * fro..wp_reputation_radar_alert..." />
-            <marker date="1488478403143" expanded="true" signature="2707:2758" placeholder="select * fro..wp_reputation_radar_alert..." />
-            <marker date="1488478403143" expanded="true" signature="3114:3176" placeholder="select * fro..wp_reputation_radar_settings..." />
-            <marker date="1488478403143" expanded="true" signature="3475:3508" placeholder="..." />
+            <marker date="1488567264384" expanded="true" signature="451:510" placeholder="select * fro..wp_reputation_radar_settings..." />
+            <marker date="1488567264384" expanded="true" signature="862:921" placeholder="select * fro..wp_reputation_radar_settings..." />
+            <marker date="1488567264384" expanded="true" signature="1222:1281" placeholder="select * fro..wp_reputation_radar_settings..." />
+            <marker date="1488567264384" expanded="true" signature="1578:1640" placeholder="select * fro..wp_reputation_radar_settings..." />
+            <marker date="1488567264384" expanded="true" signature="1901:1952" placeholder="select * fro..wp_reputation_radar_alert..." />
+            <marker date="1488567264384" expanded="true" signature="2304:2355" placeholder="select * fro..wp_reputation_radar_alert..." />
+            <marker date="1488567264384" expanded="true" signature="2707:2758" placeholder="select * fro..wp_reputation_radar_alert..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../wp-config.php">
+    <entry file="file://$PROJECT_DIR$/includes/db/wpdb_queries.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4204851">
-          <caret line="79" column="23" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-config.php">
+    <entry file="file://$PROJECT_DIR$/includes/class-single-post-meta-manager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22911051">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reporting.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27465856">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="155" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.5944056">
+          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
           <folding />
         </state>
       </provider>

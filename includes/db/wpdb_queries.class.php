@@ -55,6 +55,8 @@ class RRP_QUERIES
      */
     public function wpdb_get_result($query_string, $output_type=ARRAY_A) {
 
+
+//        print " $query_string ";
         return $this->database->get_results($query_string, $output_type );
     }
 

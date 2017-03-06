@@ -62,14 +62,13 @@ function rrp_settings_get_specific_company_search_keyword_by_partner_id($partner
 		$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_alert where id = " . $alert_id);
 		$url = (empty($settings[0]['url'])) ? null : $settings[0]['url'];
 
-		$url_name = explode("/", $url );
+ 		$url_name = explode("/", $url );
 
 		$link_name = $url_name[2];
 
 		return " <a href='"  . $url . "' target='_blank' >  " . $link_name . " </a>";
 
 	} else {
-
 
 		$rrp_queries = new RRP_QUERIES('wp_reputation_radar_alert');
 		$settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_alert where id = " . $alert_id);
@@ -272,4 +271,47 @@ function rrp_redirect($url) {
 	</script>
 
 	<?php
+}
+
+
+
+function getExternalDatabaseInfo() {
+	$rrp_db      = (get_option('rrp_db')) ? get_option('rrp_db') : 'db639369002';
+	$rrp_db_user = (get_option('rrp_db_user')) ? get_option('rrp_db_user') : 'dbo639369002';
+	$rrp_db_pass = (get_option('rrp_db_pass')) ? get_option('rrp_db_pass') : '1qazxsw2!QAZXSW@';
+	$rrp_db_host = (get_option('rrp_db_host')) ? get_option('rrp_db_host') : 'db639369002.db.1and1.com';
+
+	$databaseInfo['rrp_db'] = $rrp_db;
+	$databaseInfo['rrp_db_user'] = $rrp_db_user;
+	$databaseInfo['rrp_db_pass'] = $rrp_db_pass;
+	$databaseInfo['rrp_db_host'] = $rrp_db_host;
+
+	return $databaseInfo;
+}
+
+function getAllPartnerId()
+{
+//	$API_KEY  = '2_7818_ubHppKG8C';
+	$API_KEY  = 'fY4Zva90HP8XFx3';
+//	$API_ID  = 'Kiok5B2tzM00Oqf';
+	$API_ID  = '2_7818_AFzuWztKz';
+	$API_DATA = array(
+			'objectID'    => 0,
+			'performAll'  => 'true',
+			'sortDir'     => 'asc',
+			'searchNotes' => 'true'
+	);
+	$url = 'https://api.ontraport.com/1/objects?';
+
+	$ch = curl_init();
+	$finalURL = $url . urldecode(http_build_query($API_DATA));
+
+	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt ($ch, CURLOPT_URL, $finalURL);
+	curl_setopt ($ch, CURLOPT_HTTPHEADER, array('Api-Appid:' . $API_ID, 'Api-Key:' . $API_KEY));
+	$response  = curl_exec($ch);
+	curl_close($ch);
+
+	$API_INFO  = json_decode($response, true);
+	return $API_INFO['data'];
 }

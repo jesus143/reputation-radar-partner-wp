@@ -7,6 +7,7 @@ function rrp_settings_func() {
 
     rrp_script_and_style();
     $keyword_setting = rrp_setting_get_current_user_keyword_setting();
+    print_site_url_hidden_field();
  ?>
 
 
@@ -84,7 +85,7 @@ function rrp_alert_partner_func() {
         $totalNotRelevantAlert   = $alert->countTotalNotRelevantAlert($partner_id);
     }
     rrp_script_and_style();
-
+    print_site_url_hidden_field();
     // dd($partnersAlertAll);
   ?>
 
@@ -131,6 +132,7 @@ function rrp_alert_agent_func()
     $partnersAlertInit        = $alert->getPartnersAlertInit($partner_id);
     //    dd($partnersAlertAll);
     rrp_script_and_style();
+    print_site_url_hidden_field();
   ?>
   <br><br><br>
    <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
@@ -644,13 +646,16 @@ function rrp_alert_data_tables_test_func()
 */
 function rrp_patners_list_agent_func()
 {
+
+    error_reporting(0);
+
      $ratingSites = [];
      $ratingSite  = [];
      $rating_site = new App\WP_Reputation_Radar_Rating_Site();
-     $partnerIds = [77514,79446,68805];
+     $partnerIds =  getAllPartnerId();
      $partner_id = (!empty($_GET['partner_id'])) ? $_GET['partner_id'] : null;
 
-
+    print_site_url_hidden_field();
      // Submit create new rating site and trigger save data
      if (isset($_POST['rating_site_add'])) {
         $rating_site->create(['url'=>$_POST['url'], 'partner_id'=>$_POST['partner_id']]);

@@ -113,7 +113,9 @@ class WP_Reputation_Radar_Rating_Site
 		<table id="rrp-alert-not-related" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th   >Partner Id</th>
+				<th>Partner Id</th>
+				<th>Full Name</th>
+				<th>Email</th>
 				<th>Total Rating Site</th>
 				<th>Manage Site</th>
 			</tr>
@@ -126,9 +128,18 @@ class WP_Reputation_Radar_Rating_Site
 			</tr>
 			</tfoot>
 			<tbody>
-			<?php foreach($partnerIds as $partnerId): ?>
+			<?php foreach($partnerIds as $partner):
+
+				$partnerId = $partner['id'];
+				$firstname = $partner['firstname'];
+				$lastname = $partner['lastname'];
+				$email = $partner['email'];
+
+				?>
 			<tr>
 				<td> <?php print $partnerId; ?> </td>
+				<td> <?php print $firstname . ' ' . $lastname;  ?> </td>
+				<td> <?php print $email;  ?> </td>
 				<td> <?php print $this->getTotalRatingSite($partnerId); ?> </td>
 				<td> <a href="<?php print rrp_partner_id_list_url; ?>/?partner_id=<?php print $partnerId ?>">Manage Site</a> </td>
 			</tr>
