@@ -117,8 +117,7 @@ function rrp_alert_partner_func() {
 
     rrp_script_and_style();
     print_site_url_hidden_field();
-
-
+    $dateNow = rrp_get_date_today();
     // dd($partnersAlertAll);
 
   ?>
@@ -129,37 +128,28 @@ function rrp_alert_partner_func() {
              <b> Agent Name: <?php echo rrp_get_user_full_name($agent_id); ?> </b> <br><br>
             <div class="row">
                 <div class="col-md-12">
-
                     <input type="hidden" name="rrp_agent_id" id="rrp_agent_id"  value="<?php echo $agent_id; ?>" />
-
-
                     <input type="radio" onclick="rrp_time_option('day')"  name="rrp_time_option" value="day" checked/>Day <br>
                     <input type="radio" onclick="rrp_time_option('week')" name="rrp_time_option" value="week" />Week <br>
-
                     <hr>
-
-
                         <div id="rrp_sort_agent_click_per_day" style="display:block" >
                             <label for="meeting"> Select date and time   </label><br>
                             <select name="time" id="rrp_time_day_hour"  ><?php echo rrp_get_times('Selected..'); ?></select>
-                            <input id="rrp_time_day" type="date" value="2017-05-11"/>
+                            <input id="rrp_time_day" type="date" value="<?php echo $dateNow; ?>"/>
                         </div>
                         <div id="rrp_sort_agent_click_per_week" style="display:none" >
 
                             <label for="meeting">Meeting Date : </label><br><input  id="rrp_time_week" type="week" />
                         </div>
                     <hr>
-
                     <input type="button" value="Calculate" onclick="rrp_agent_click()" />
                     <hr>
-
                     <div id="rrp_agent_total_click_response_display"> response here </div>
-
                     <hr>
-
                 </div>
             </div>
     <?php else: ?>
+
         <h3> Display Alerts </h3>
           <div class="row">
             <div class="col-md-12">

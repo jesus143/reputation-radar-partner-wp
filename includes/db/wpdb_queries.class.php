@@ -41,7 +41,7 @@ class RRP_QUERIES
     private function connect($user, $pass, $db, $host)
     {
 
-//        return $mydb;
+        //        return $mydb;
     }
 
 

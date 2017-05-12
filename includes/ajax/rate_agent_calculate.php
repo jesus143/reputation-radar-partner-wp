@@ -13,7 +13,7 @@
  $week       = $_POST['week'];
  $day        = $_POST['day'];
  $agent_id   = $_POST['agent_id'];
- $dateNow    = date('Y-m-d');
+ $dateNow    = rrp_get_date_today();
 
 
  $url = get_site_url() . '/reputation-radar-alert/?agent_id='.$agent_id . '&action=view all click';

@@ -358,3 +358,8 @@ function rrp_get_user_full_name($user_id){
 function rrp_date_time_human_readable($dateTime) {
 	return date("F j/D Y , g:i a",strtotime($dateTime));
 }
+
+
+function rrp_get_date_today() {
+	return date('Y-m-d');
+}
