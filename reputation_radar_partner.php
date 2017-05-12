@@ -1,5 +1,8 @@
 <?php
-/*
+if(!session_id()) {
+    session_start();
+}
+/* 
  * Plugin Name:       Reputation Radar Partner
  * Plugin URI:
  * Description:       This is the reputation radar for partner ui and functions
@@ -27,8 +30,9 @@ if ( ! defined( 'WPINC' ) ) {
 
 require_once plugin_dir_path( __FILE__ ) . '/includes/class-single-post-meta-manager.php';
 
-function run_single_post_meta_manager() { 
-    $spmm = new Single_Post_Meta_Manager(); 
+function run_single_post_meta_manager() {
+
+    $spmm = new Single_Post_Meta_Manager();
 }
 
 run_single_post_meta_manager();
@@ -54,6 +58,8 @@ function rrp_table_install()
     $sql1 = "CREATE TABLE $table_name (
 		id int(9) NOT NULL AUTO_INCREMENT,
         partner_id int(9) NOT NULL,
+        agent_id int(11) NOT NULL, /** user_id as agent_id */
+        agent_updated datetime NOT NULL, /** This will update date when agent click relevant or not relevant with in alert */
         title varchar(255) NOT NULL,
         description text NOT NULL,
         person_name varchar(255) NOT NULL,

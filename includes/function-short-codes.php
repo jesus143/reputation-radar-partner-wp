@@ -7,12 +7,11 @@ function rrp_settings_func() {
 
     rrp_script_and_style();
     $keyword_setting = rrp_setting_get_current_user_keyword_setting();
-    print_site_url_hidden_field();
- ?>
+    print_site_url_hidden_field(); ?>
 
 
 
- <br><br>
+    <br><br>
       <div class="row">
         <div class="col-md-12">
            <br/><br/> 
@@ -63,64 +62,131 @@ function rrp_alert_partner_func() {
 
 
 
+     $agent_id        = $_GET['agent_id'];
+     $sort_time_click = $_GET['sort_time_click'];
+     $action = $_GET['action'];
+
+
+
      $alert                   = new App\WP_Reputation_Radar_Alert();
      $setting                 = new App\WP_Reputation_Radar_Settings();
      $partner_id              = $setting->getCurrentPartnerIdFromSettings();
 
-     $partnersAlertAll = '';
-     $partnersAlertRelated = '';
+     $partnersAlertAll        = '';
+     $partnersAlertRelated    = '';
      $partnersAlertNotRelated = '';
 
-     $totalAllAlert = 0;
-     $totalRelevantAlert = 0;
-     $totalNotRelevantAlert = 0;
+     $totalAllAlert           = 0;
+     $totalRelevantAlert      = 0;
+     $totalNotRelevantAlert   = 0;
 
-    if(!empty($partner_id)) {
+     $agent_content_class           = '';
+     $agent_menu_class             = '';
+     $client_content_class         = '';
+     $client_menu_class            = '';
+
+    if (!empty($agent_id)) {
+
+         $partnersAlertNotRelated = $alert->getAgentSetRelevantComplainByClient($agent_id);
+         $totalNotRelevantAlert =  count($partnersAlertNotRelated);
+
+
+         if($action == 'view all click') {
+             $partnersAlertAll = $alert->getPartnersAlertAllByAgentClick($agent_id);
+             $totalAllAlert =  count($partnersAlertAll);
+
+             $partnersAlertRelated = $alert->getPartnersAlertRelatedByAgentClick($agent_id);
+             $totalRelevantAlert =  count($partnersAlertRelated);
+         }
+
+
+         $agent_content_class           =  ' in active';
+         $agent_menu_class = 'active';
+
+    } else if(!empty($partner_id)) {
         $partnersAlertAll        = $alert->getPartnersAlertAll($partner_id);
         $partnersAlertRelated    = $alert->getPartnersAlertRelated($partner_id);
-
         $partnersAlertNotRelated = $alert->getPartnersAlertNotRelated($partner_id);
+
         $totalAllAlert           = $alert->countTotalAllAlert($partner_id);
         $totalRelevantAlert      = $alert->countTotalRelevantAlert($partner_id);
         $totalNotRelevantAlert   = $alert->countTotalNotRelevantAlert($partner_id);
+        $client_content_class           = ' in active';
+        $client_menu_class   = ' active';
     }
+
     rrp_script_and_style();
     print_site_url_hidden_field();
+
+
     // dd($partnersAlertAll);
+
   ?>
-
-
-
   <br><br><br>
-   <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">  
-    <br>
-      <h3> Display Alerts </h3>
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">All Alert ( <?php print $totalAllAlert ; ?> )</a></li>
-            <li><a data-toggle="tab" href="#menu1">Relevant Alert (<?php print $totalRelevantAlert; ?>)</a></li>
-            <li><a data-toggle="tab" href="#menu2">Not Relevant alert ( <?php print $totalNotRelevantAlert ; ?> )</a></li>
-          </ul>
-          <div class="tab-content">
-            <div id="home" class="tab-pane fade in active"> 
-                <div class="list-group">
-                    <?php $alert->uiAlertAll($partnersAlertAll); ?>
-                </div> 
+   <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+    <?php if($sort_time_click == true): ?>
+        <h3> Sort with agent click report for hour, day and week </h3>
+             <b> Agent Name: <?php echo rrp_get_user_full_name($agent_id); ?> </b> <br><br>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <input type="hidden" name="rrp_agent_id" id="rrp_agent_id"  value="<?php echo $agent_id; ?>" />
+
+
+                    <input type="radio" onclick="rrp_time_option('day')"  name="rrp_time_option" value="day" checked/>Day <br>
+                    <input type="radio" onclick="rrp_time_option('week')" name="rrp_time_option" value="week" />Week <br>
+
+                    <hr>
+
+
+                        <div id="rrp_sort_agent_click_per_day" style="display:block" >
+                            <label for="meeting"> Select date and time   </label><br>
+                            <select name="time" id="rrp_time_day_hour"  ><?php echo rrp_get_times('Selected..'); ?></select>
+                            <input id="rrp_time_day" type="date" value="2017-05-11"/>
+                        </div>
+                        <div id="rrp_sort_agent_click_per_week" style="display:none" >
+
+                            <label for="meeting">Meeting Date : </label><br><input  id="rrp_time_week" type="week" />
+                        </div>
+                    <hr>
+
+                    <input type="button" value="Calculate" onclick="rrp_agent_click()" />
+                    <hr>
+
+                    <div id="rrp_agent_total_click_response_display"> response here </div>
+
+                    <hr>
+
+                </div>
             </div>
-            <div id="menu1" class="tab-pane fade">
-                <?php $alert->uiAlertRelated($partnersAlertRelated);   ?>
-             </div>
-            <div id="menu2" class="tab-pane fade">
-                <?php $alert->uiAlertNotRelated($partnersAlertNotRelated);   ?>
+    <?php else: ?>
+        <h3> Display Alerts </h3>
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="nav nav-tabs">
+                <li class="<?php echo $client_menu_class; ?>"><a data-toggle="tab" href="#home">All Alert ( <?php print $totalAllAlert ; ?> )</a></li>
+                <li><a data-toggle="tab" href="#menu1">Relevant Alert (<?php print $totalRelevantAlert; ?>)</a></li>
+                <li class="<?php echo $agent_menu_class; ?>" ><a data-toggle="tab" href="#menu2">Not Relevant alert ( <?php print $totalNotRelevantAlert ; ?> )</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="home" class="tab-pane fade <?php echo $client_content_class; ?>">
+                    <div class="list-group">
+                        <?php $alert->uiAlertAll($partnersAlertAll); ?>
+                    </div>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <?php $alert->uiAlertRelated($partnersAlertRelated);   ?>
+                 </div>
+                <div id="menu2" class="tab-pane fade <?php echo $agent_content_class; ?>">
+                    <?php $alert->uiAlertNotRelated($partnersAlertNotRelated);   ?>
+                </div>
+              </div>
             </div>
           </div>
-        </div>   
-      </div>
+   <?php endif; ?>
   </div>
   <?php
 }
-
 /**
 * Display all the alert that is being scraped and needs for agent to rate relevant or none relevant in order to display
 * scraped data to partners alert
@@ -655,11 +721,16 @@ function rrp_patners_list_agent_func()
      $partnerIds =  getAllPartnerId();
      $partner_id = (!empty($_GET['partner_id'])) ? $_GET['partner_id'] : null;
 
-    print_site_url_hidden_field();
+     print_site_url_hidden_field();
      // Submit create new rating site and trigger save data
      if (isset($_POST['rating_site_add'])) {
         $rating_site->create(['url'=>$_POST['url'], 'partner_id'=>$_POST['partner_id']]);
+
+     } else if(isset($_POST['rating_site_add_fields'])) {
+        $rating_site->updateOrCreate(['url'=>$_POST['url'], 'partner_id'=>$_POST['partner_id']]);
      }
+
+
 
      // Click delete link and trigger delete data
      else if($_GET['status'] == 'delete'){
@@ -718,33 +789,67 @@ function rrp_patners_list_agent_func()
     ?>
        <br><br><br>
         <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
-        <br>
-          <h3> Manage partner information </h3>
-          <div class="row">
-            <div class="col-md-12">
+
+
+
+
+<!--        <br>-->
+            <!--          <h3> Manage partner information </h3>-->
+          <div class="row" style="padding:50px">
+            <div class="col-md-12" style="display:none">
                 <?php $rating_site->uiPartnersRatingSiteList($ratingSites); ?>
             </div>
-
-           <br>
-            <hr>
-            <br>
-
-
+<!--            <br>-->
+<!--            <hr>-->
+<!--            <br> -->
               <div class="col-md-12">
                 <h3>Add New Rating Site for partner id <?php print $partner_id; ?></h3>
-                 <?php $rating_site->uiPartnerAddRattingSiteForm($partner_id); ?>
+                 <?php $rating_site->fieldTrustPilot($partner_id, $ratingSites); ?>
             </div>
           </div>
-        </div>
-
-
+        </div> 
            <br><br><br>
-    <a href="<?php print rrp_partner_id_list_url;  ?>">
-        <button class="alert alert-info">Back To Partner's List</button>
-    </a>
+            <a href="<?php print rrp_partner_id_list_url;  ?>">
+                <button class="alert alert-info">Back To Partner's List</button>
+            </a>
     <?php
     }
-    ?>
-
-    <?php
 }
+
+    /**
+    * @param $contactmethods
+    * Add users alert information about alert complain
+    *
+    * @return mixed
+    */
+    function rrp__modify_user_table_alert_sort_time( $column )
+    {
+        $column['Click Sort Time'] = 'Click Sort Time';
+        return $column;
+    }
+    add_filter( 'manage_users_columns', 'rrp__modify_user_table_alert_sort_time' );
+    function rrp_modify_user_table_alert_complain( $column )
+    {
+        $column['Alert Complain'] = 'Alert Complain';
+        return $column;
+    }
+    add_filter( 'manage_users_columns', 'rrp_modify_user_table_alert_complain' );
+    function rrp__modify_user_table_row( $val, $column_name, $user_id )
+    {
+       $alert = new App\WP_Reputation_Radar_Alert();
+        switch ($column_name) {
+            case 'Alert Complain'   :
+                    // query specific alert were user_id as agent_id and status = 3 as complain in wp_reputation_radar_alert
+                    $total = $alert->getAgentTotalSetRelevantComplainByClient($user_id);
+                    $url = get_site_url() . '/reputation-radar-alert/?agent_id='.$user_id;
+                    return  "<a href='$url'>" . $total  . "</a>";
+                break;
+            case "Click Sort Time":
+                      $url = get_site_url() . '/reputation-radar-alert/?agent_id='.$user_id . '&sort_time_click=1';
+                      return  "<a href='$url'> Visit </a>";
+                 break;
+            default:
+        }
+        return $val;
+    }
+    add_filter( 'manage_users_custom_column', 'rrp__modify_user_table_row', 10, 3 );

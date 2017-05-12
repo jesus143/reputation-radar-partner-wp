@@ -33,7 +33,6 @@ class WP_Reputation_Radar_Alert {
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 1 ");
 		return $alerts;
 	}
-
 	public function getPartnersAlertRelated($partner_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 2");
@@ -45,6 +44,9 @@ class WP_Reputation_Radar_Alert {
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 3");
 		return $alerts;
 	}
+
+
+
 	public function updatePartnerAlertToRelatedByAgent($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>1], ['id'=>$alert_id]);
@@ -65,18 +67,15 @@ class WP_Reputation_Radar_Alert {
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>4], ['id'=>$alert_id]);
 		return $alerts;
 	}
-
 	public function countTotalAllAlert($partner_id)
 	{
 		return count($this->getPartnersAlertAll($partner_id));
 	}
-
 	public function countTotalRelevantAlert($partner_id)
 	{
 		return count($this->getPartnersAlertRelated($partner_id));
 
 	}
-
 	public function countTotalNotRelevantAlert($partner_id)
 	{
 		return count($this->getPartnersAlertNotRelated($partner_id));
@@ -86,6 +85,53 @@ class WP_Reputation_Radar_Alert {
 		$alerts = $this->rrp_queries->wpdb_delete(['id'=>$alert_id]);
 		return $alerts;
 	}
+	public function addAgentId($alert_id)
+	{
+		$agent_id = rrp_get_authenticated_user_id();
+		$alerts = $this->rrp_queries->wpdb_update(['agent_id'=>$agent_id], ['id'=>$alert_id]);
+		return $alerts;
+	}
+
+	/**
+	 * @param $alert_id
+	 * 2017-03-03 23:10:35
+	 * @return bool
+	 */
+	public function addAgentUpdated($alert_id)
+	{
+		$dateTimeNow = date("Y-m-d h:i:s");
+		$alerts = $this->rrp_queries->wpdb_update(['agent_updated'=>$dateTimeNow], ['id'=>$alert_id]);
+		return $alerts;
+	}
+
+	public function  getAgentTotalSetRelevantComplainByClient($agent_id)
+	{
+		$alerts = $this->rrp_queries->wpdb_get_result("select count(*) as total_complain from $this->table_name where agent_id = $agent_id and status = 3");
+		return $alerts[0]['total_complain'];
+	}
+
+
+	public function getAgentSetRelevantComplainByClient($agent_id)
+	{
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 3");
+		return $alerts;
+	}
+
+	public function getPartnersAlertAllByAgentClick($agent_id)
+	{
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 1");
+		return $alerts;
+	}
+
+	public function getPartnersAlertRelatedByAgentClick($agent_id)
+	{
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 2");
+		return $alerts;
+	}
+
+
+
+
 
 	// ui
 	public function uiAlertInit($partnersAlertInit)
@@ -174,11 +220,14 @@ class WP_Reputation_Radar_Alert {
 			</tr>
 			</tfoot>
 			<tbody>
-			<?php foreach($partnersAlertAll as $alert): ?>
+			<?php
+
+			if(!empty($partnersAlertAll)) {
+				foreach ($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
 					<td> <?php print  $alert['id']; ?> </td>
-					<td > <?php print  $alert['partner_id']; ?> </td>
-					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
+					<td> <?php print  $alert['partner_id']; ?> </td>
+					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'], $alert['id'], $alert['rate']); ?> </td>
 					<td> <?php print  rrp_alert_get_scraped_keyword_by_partner_id($alert['id']); ?> </td>
 					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
@@ -186,14 +235,25 @@ class WP_Reputation_Radar_Alert {
 						<small><?php print rrp_time_elapsed_string($alert['created_at']); ?></small>
 					</td>
 					<td>
-						<input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelated('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )" />
-						<div style="display:none" class="rrp-loader" id="alert-loader-relevant-<?php print $alert['id']; ?>"  ></div>
-				 		<br>
-						<input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertNotToRelated('<?php print $alert['id']; ?>', '#alert-loader-not-relevant-<?php print $alert['id']; ?>' )" />
-						<div style="display:none" class="rrp-loader" id="alert-loader-not-relevant-<?php print $alert['id']; ?>" ></div>
+						<input type="button" class="alert alert-info" value="Relevant"
+							   onClick="updatePartnerAlertToRelated('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )"/>
+
+						<div style="display:none" class="rrp-loader"
+							 id="alert-loader-relevant-<?php print $alert['id']; ?>"></div>
+						<br>
+						<input type="button" class="alert alert-info" value="Not Relevant"
+							   onClick="updatePartnerAlertNotToRelated('<?php print $alert['id']; ?>', '#alert-loader-not-relevant-<?php print $alert['id']; ?>' )"/>
+
+						<div style="display:none" class="rrp-loader"
+							 id="alert-loader-not-relevant-<?php print $alert['id']; ?>"></div>
 					</td>
-				</tr>
-			<?php endforeach; ?>
+					</tr><?php
+				endforeach;
+			}
+
+
+
+			?>
 			</tbody>
 		</table>
 	<?php
@@ -231,13 +291,14 @@ class WP_Reputation_Radar_Alert {
 				<th>delete/th>
 			</tr>
 			</tfoot>
-
 			<tbody>
-			<?php foreach($partnersAlertAll as $alert): ?>
-				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+			<?php
+			if(!empty($partnersAlertAll)) {
+				foreach ($partnersAlertAll as $alert): ?>
+					<tr id="rrp-alert-<?php print $alert['id']; ?>">
 					<td> <?php print  $alert['id']; ?> </td>
-					<td > <?php print  $alert['partner_id']; ?> </td>
-					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
+					<td> <?php print  $alert['partner_id']; ?> </td>
+					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'], $alert['id'], $alert['rate']); ?> </td>
 					<td> <?php print  rrp_alert_get_scraped_keyword_by_partner_id($alert['id']); ?> </td>
 					<td> <?php print  $alert['rate']; ?> </td>
 					<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
@@ -245,19 +306,23 @@ class WP_Reputation_Radar_Alert {
 						<small><?php print rrp_time_elapsed_string($alert['created_at']); ?></small>
 					</td>
 					<td>
-						<input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')" />
-						<div style="display:none" class="rrp-loader" id="alert-loader-delete-<?php print $alert['id']; ?>"  ></div>
-					</td>
-				</tr>
-			<?php endforeach; ?>
-			</tbody>
+						<input type="button" class="alert alert-danger" value="Delete"
+							   onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')"/>
 
+						<div style="display:none" class="rrp-loader"
+							 id="alert-loader-delete-<?php print $alert['id']; ?>"></div>
+					</td>
+					</tr><?php
+				endforeach;
+			}
+			?>
+			</tbody>
 		</table>
 	<?php
 
 	}
 	public function uiAlertNotRelated($partnersAlertAll)
-	{?>
+	{ ?>
 
 
 
@@ -287,23 +352,26 @@ class WP_Reputation_Radar_Alert {
 			</tr>
 			</tfoot>
 			<tbody>
-			<?php foreach($partnersAlertAll as $alert): ?>
-				<tr id="rrp-alert-<?php print $alert['id']; ?>">
-					<td> <?php print  $alert['id']; ?> </td>
-					<td > <?php print  $alert['partner_id']; ?> </td>
-					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
-					<td> <?php print  rrp_alert_get_scraped_keyword_by_partner_id($alert['id']); ?> </td>
-					<td> <?php print  $alert['rate']; ?> </td>
-					<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
-					<td>
-						<small><?php print rrp_time_elapsed_string($alert['created_at']); ?></small>
-					</td>
-					<td>
-						 <input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')" />
-						 <div style="display:none" class="rrp-loader" id="alert-loader-delete-<?php print $alert['id']; ?>"  ></div>
-					 </td>
-				</tr>
-			<?php endforeach; ?>
+			<?php
+				if(!empty($partnersAlertAll))  {
+					foreach($partnersAlertAll as $alert): ?>
+						<tr id="rrp-alert-<?php print $alert['id']; ?>">
+							<td> <?php print  $alert['id']; ?> </td>
+							<td > <?php print  $alert['partner_id']; ?> </td>
+							<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
+							<td> <?php print  rrp_alert_get_scraped_keyword_by_partner_id($alert['id']); ?> </td>
+							<td> <?php print  $alert['rate']; ?> </td>
+							<td> <?php print  rrp_is_limit_str($alert['description'], 100); ?> </td>
+							<td>
+								<small><?php print rrp_time_elapsed_string($alert['created_at']); ?></small>
+							</td>
+							<td>
+								 <input type="button" class="alert alert-danger" value="Delete" onClick="deleteAlert('<?php print $alert['id']; ?>', '#alert-loader-delete-<?php print $alert['id']; ?>')" />
+								 <div style="display:none" class="rrp-loader" id="alert-loader-delete-<?php print $alert['id']; ?>"  ></div>
+							 </td>
+						</tr><?php
+					endforeach;
+			 	}?>
 			</tbody>
 		</table>
 	<?php

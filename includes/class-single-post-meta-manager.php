@@ -98,7 +98,7 @@ class Single_Post_Meta_Manager {
     {
         add_action( 'admin_menu', 'rrp_admin_menu', 99 );
         add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts', 100 );
-        add_action('body_begin', 'my_function');
+        add_action( 'body_begin', 'my_function');
 
         //        add_action( 'after_body', function($after_body){
         //            $after_body.='<input type="hidden" value="' . get_site_url() . '" id="rrp_ri_site_url"  />';
@@ -109,9 +109,13 @@ class Single_Post_Meta_Manager {
     private function define_shortcodes()
     {
         add_shortcode("rrp_settings", 'rrp_settings_func');
+
         add_shortcode("rrp_alert_partner", 'rrp_alert_partner_func');
+
         add_shortcode("rrp_alert_agent", 'rrp_alert_agent_func');
+
         add_shortcode("rrp_patners_list_agent", 'rrp_patners_list_agent_func');
+
         add_shortcode("rrp_alert_data_tables_test", 'rrp_alert_data_tables_test_func');
 
     }

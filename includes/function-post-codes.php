@@ -42,3 +42,6 @@ if(isset($_POST['rrp_post_settings'])) {
 // $settings = $rrp_queries->wpdb_get_result("select * from wp_reputation_radar_settings where user_id = " . rrp_get_authenticated_user_id());
 
 // print_r($settings);
+
+
+

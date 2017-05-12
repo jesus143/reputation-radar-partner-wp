@@ -227,7 +227,7 @@ function rrp_script_and_style()
 {
 	?>
 
-
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"> </script>
 
 
 
@@ -314,4 +314,47 @@ function getAllPartnerId()
 
 	$API_INFO  = json_decode($response, true);
 	return $API_INFO['data'];
+}
+
+
+/**
+ *
+ * Get times as option-list.
+ *
+ * @return string List of times
+ */
+function rrp_get_times( $default = '19:00', $interval = '+1 hour' ) {
+
+	$output = '';
+
+	$current = strtotime( '00:00' );
+	$end = strtotime( '23:59' );
+
+	$output .= "<option value='select' selected>Whole day</option>";
+
+	while( $current <= $end ) {
+		$time = date( 'H:i', $current );
+		$sel = ( $time == $default ) ? ' selected' : '';
+
+		$output .= "<option value=\"{$time}\"{$sel}>" . date( 'h.i A', $current ) .'</option>';
+		$current = strtotime( $interval, $current );
+	}
+
+	return $output;
+}
+
+function rrp_get_user_full_name($user_id){
+	$user_info = get_userdata($user_id);
+
+	if(empty($user_info->last_name) and empty($user_info->first_name)) {
+		return null;
+  	} else {
+		return $user_info->last_name .  ", " . $user_info->first_name;
+	}
+
+
+}
+
+function rrp_date_time_human_readable($dateTime) {
+	return date("F j/D Y , g:i a",strtotime($dateTime));
 }

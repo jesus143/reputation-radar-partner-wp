@@ -68,6 +68,39 @@ class WP_Reputation_Radar_Rating_Site
 		$response = $this->rrp_queries->wpdb_insert($data);
 		return $response;
 	}
+
+	/**
+	 * @param array $url
+	 * @param $partner_id
+	 * @return bool
+	 */
+	public function updateOrCreate($post = array(), $partner_id)
+	{
+		$response = [];
+		//		print "<pre>";
+		//		print_r($post);
+		//		print "</pre>";
+		$url 		= $post['url'];
+		$partner_id = $post['partner_id'];
+
+		// delete
+		$this->rrp_queries->wpdb_delete(['partner_id'=>$partner_id]);
+
+		// insert or update
+		foreach($url as $u) {
+			if(!empty($u)) {
+				$isExist = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where url = '$u' and partner_id = $partner_id");
+				if (empty($isExist)) {
+					//				print "<br> insert because not exist ";
+					$response = $this->rrp_queries->wpdb_insert(['url' => $u, 'partner_id' => $partner_id]);
+				} else {
+					$response = $this->update($isExist[0]['id'], ['url' => $u]);
+					//				print "<br> update because not exist ";
+				}
+			}
+		}
+		return $response;
+	}
 	/**
 	 * Delete rating site by rating id
 	 * @param $id
@@ -187,6 +220,56 @@ class WP_Reputation_Radar_Rating_Site
 		</table>
 		<?php
 	}
+
+
+
+
+
+	public function fieldTrustPilot($partner_id, $ratingSites) {
+		$trustPilot = '';
+		$reviewCentre = '';
+		foreach($ratingSites as $url) {
+			$url = $url['url'];
+			if(strpos($url, 'www.reviewcentre.com')) {
+				$reviewCentre = $url;
+			} else if (strpos($url, 'uk.trustpilot.com'))  {
+				$trustPilot = $url;
+			} else {
+			}
+
+
+
+
+		}
+		?>
+
+		<form  action="<?php print rrp_get_current_site_url_full(); ?>" method="POST" >
+			<div class="form-group">
+
+
+				<br>
+				<label>Trust Pilot</label>
+				<br>
+				<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Trust pilot url here.." name="url[]" value="<?php print $trustPilot; ?>" />
+				<br>
+				<label>Review Centre</label>
+				<br>
+				<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Review centre url here.." name="url[]" value="<?php print $reviewCentre; ?>" >
+
+				<input type="hidden" value="<?php print $partner_id; ?>" name="partner_id" />
+			</div>
+			<button type="submit" class="btn btn-primary" name="rating_site_add_fields">Submit</button>
+		</form>
+
+			<?php
+
+	}
+
+
+
+
+
+
 
 	/**
 	 * Display form to add new rating site
