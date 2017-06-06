@@ -1,7 +1,5 @@
-<?php 
-
-namespace App;
-
+<?php  
+namespace App; 
 
 /**
  * Class WP_Reputation_Radar_Alert
@@ -23,19 +21,26 @@ class WP_Reputation_Radar_Alert {
 			$this->rrp_queries = new RRP_QUERIES('wp_reputation_radar_alert'); 
 	}
 
+	/**
+	 * Get all alert for partners  
+	 * @param  int  $partner_id [This is the partner id its currently not in used]
+	 * @return array $alerts [All the partners retrieved will return]
+	 */
 	public function getPartnersAlertInit($partner_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where status = 0 order by id desc");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where status = 0 order by id desc limit 600");
 		return $alerts;
 	}
+
 	public function getPartnersAlertAll($partner_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 1 ");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 1 limit 200"); 
 		return $alerts;
 	}
+
 	public function getPartnersAlertRelated($partner_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 2");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 2 limit 200");
 		return $alerts;
 	}
 
@@ -44,47 +49,52 @@ class WP_Reputation_Radar_Alert {
 		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where partner_id = $partner_id and status = 3");
 		return $alerts;
 	}
-
-
-
+ 
 	public function updatePartnerAlertToRelatedByAgent($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>1], ['id'=>$alert_id]);
 		return $alerts;
 	}
+
 	public function updatePartnerAlertToRelated($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>2], ['id'=>$alert_id]);
 		return $alerts;
 	}
+
 	public function updatePartnerAlertNotToRelated($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>3], ['id'=>$alert_id]);
 		return $alerts;
 	}
+
 	public function updatePartnerAlertToNotRelatedByAgent($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_update(['status'=>4], ['id'=>$alert_id]);
 		return $alerts;
 	}
+
 	public function countTotalAllAlert($partner_id)
 	{
 		return count($this->getPartnersAlertAll($partner_id));
 	}
+
 	public function countTotalRelevantAlert($partner_id)
 	{
-		return count($this->getPartnersAlertRelated($partner_id));
-
+		return count($this->getPartnersAlertRelated($partner_id)); 
 	}
+
 	public function countTotalNotRelevantAlert($partner_id)
 	{
 		return count($this->getPartnersAlertNotRelated($partner_id));
 	}
+
 	public function deleteAlert($alert_id)
 	{
 		$alerts = $this->rrp_queries->wpdb_delete(['id'=>$alert_id]);
 		return $alerts;
 	}
+
 	public function addAgentId($alert_id)
 	{
 		$agent_id = rrp_get_authenticated_user_id();
@@ -109,30 +119,25 @@ class WP_Reputation_Radar_Alert {
 		$alerts = $this->rrp_queries->wpdb_get_result("select count(*) as total_complain from $this->table_name where agent_id = $agent_id and status = 3");
 		return $alerts[0]['total_complain'];
 	}
-
-
+ 
 	public function getAgentSetRelevantComplainByClient($agent_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 3");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 3 limit 200");
 		return $alerts;
 	}
 
 	public function getPartnersAlertAllByAgentClick($agent_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 1");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 1 limit 200");
 		return $alerts;
 	}
 
 	public function getPartnersAlertRelatedByAgentClick($agent_id)
 	{
-		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 2");
+		$alerts = $this->rrp_queries->wpdb_get_result("select * from $this->table_name where agent_id = $agent_id and status = 2 limit 1000");
 		return $alerts;
 	}
-
-
-
-
-
+ 
 	// ui
 	public function uiAlertInit($partnersAlertInit)
 	{
@@ -189,6 +194,7 @@ class WP_Reputation_Radar_Alert {
 		</table>
 		<?php
 	}
+
 	public function uiAlertAll($partnersAlertAll)
 	{
 		?>
@@ -197,6 +203,7 @@ class WP_Reputation_Radar_Alert {
 			<thead>
 			<tr>
 			<tr>
+				<th style="width:5%;" >agent updated</th>
 				<th style="width:5%" >Id</th>
 				<th style="width:4%" >Partner Id</th>
 				<th  style="width:4%" >Source Url</th>
@@ -209,6 +216,7 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>agent updated</th>
 				<th>Id</th>
 				<th>Partner Id</th>
 				<th>Source Url</th>
@@ -225,6 +233,7 @@ class WP_Reputation_Radar_Alert {
 			if(!empty($partnersAlertAll)) {
 				foreach ($partnersAlertAll as $alert): ?>
 				<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td > <?php print rrp_date_time_human_readable($alert['agent_updated']); ?> </td>
 					<td> <?php print  $alert['id']; ?> </td>
 					<td> <?php print  $alert['partner_id']; ?> </td>
 					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'], $alert['id'], $alert['rate']); ?> </td>
@@ -249,26 +258,19 @@ class WP_Reputation_Radar_Alert {
 					</td>
 					</tr><?php
 				endforeach;
-			}
-
-
-
+			} 
 			?>
 			</tbody>
 		</table>
-	<?php
-
+	<?php 
 	}
+
 	public function uiAlertRelated($partnersAlertAll)
-	{?>
-
-
-
-
-		<table id="rrp-alert-related" class="display" cellspacing="0" width="100%">
-
+	{?> 
+		<table id="rrp-alert-related" class="display" cellspacing="0" width="100%"> 
 			<thead>
 			<tr>
+				<th style="width:5%;" >agent updated</th>
 				<th style="width:5%" >Id</th>
 				<th style="width:8%" >Partner Id</th>
 				<th  style="width:5%" >Source Url</th>
@@ -281,6 +283,8 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+
+				<th>agent updated</th>
 				<th>Id</th>
 				<th>Partner Id</th>
 				<th>Source Url</th>
@@ -296,6 +300,7 @@ class WP_Reputation_Radar_Alert {
 			if(!empty($partnersAlertAll)) {
 				foreach ($partnersAlertAll as $alert): ?>
 					<tr id="rrp-alert-<?php print $alert['id']; ?>">
+					<td > <?php print rrp_date_time_human_readable($alert['agent_updated']); ?> </td>
 					<td> <?php print  $alert['id']; ?> </td>
 					<td> <?php print  $alert['partner_id']; ?> </td>
 					<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'], $alert['id'], $alert['rate']); ?> </td>
@@ -318,17 +323,15 @@ class WP_Reputation_Radar_Alert {
 			?>
 			</tbody>
 		</table>
-	<?php
-
+	<?php 
 	}
+
 	public function uiAlertNotRelated($partnersAlertAll)
-	{ ?>
-
-
-
+	{ ?> 
 		<table id="rrp-alert-not-related" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
+				<th style="width:5%;" >agent updated</th>
 				<th style="width:5%" >Id</th>
 				<th style="width:8%" >Partner Id</th>
 				<th  style="width:5%" >Source Url</th>
@@ -341,6 +344,7 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
+				<th>agent updated</th>
 				<th>Id</th>
 				<th>Partner Id</th>
 				<th>Source Url</th>
@@ -356,6 +360,7 @@ class WP_Reputation_Radar_Alert {
 				if(!empty($partnersAlertAll))  {
 					foreach($partnersAlertAll as $alert): ?>
 						<tr id="rrp-alert-<?php print $alert['id']; ?>">
+							<td > <?php print rrp_date_time_human_readable($alert['agent_updated']); ?> </td>
 							<td> <?php print  $alert['id']; ?> </td>
 							<td > <?php print  $alert['partner_id']; ?> </td>
 							<td> <?php print  rrp_settings_get_specific_company_search_keyword_by_partner_id($alert['partner_id'],$alert['id'],  $alert['rate']); ?> </td>
@@ -374,9 +379,6 @@ class WP_Reputation_Radar_Alert {
 			 	}?>
 			</tbody>
 		</table>
-	<?php
-
-	}
-
+	<?php 
+	} 
 }
-

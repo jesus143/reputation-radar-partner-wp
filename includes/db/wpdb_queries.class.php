@@ -28,14 +28,10 @@ class RRP_QUERIES
         // set table name
         $this->table_name = $table_name;
 
-
-
-
         // database connection
         global $database;
         $this->database =  $database;
     }
-
 
 
     private function connect($user, $pass, $db, $host)
@@ -54,9 +50,8 @@ class RRP_QUERIES
      * @Return $output_type
      */
     public function wpdb_get_result($query_string, $output_type=ARRAY_A) {
-
-
-//        print " $query_string ";
+ 
+        //        print " $query_string ";
         return $this->database->get_results($query_string, $output_type );
     }
 

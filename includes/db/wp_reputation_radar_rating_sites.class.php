@@ -165,8 +165,8 @@ class WP_Reputation_Radar_Rating_Site
 
 				$partnerId = $partner['id'];
 				$firstname = $partner['firstname'];
-				$lastname = $partner['lastname'];
-				$email = $partner['email'];
+				$lastname  = $partner['lastname'];
+				$email     = $partner['email'];
 
 				?>
 			<tr>

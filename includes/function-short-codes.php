@@ -5,6 +5,7 @@
 */
 function rrp_settings_func() {
 
+    rrp_check_login_redirect_login_page();
     rrp_script_and_style();
     $keyword_setting = rrp_setting_get_current_user_keyword_setting();
     print_site_url_hidden_field(); ?>
@@ -60,7 +61,9 @@ function rrp_settings_func() {
 */
 function rrp_alert_partner_func() {
 
+    rrp_check_login_redirect_login_page();
 
+     error_reporting(0);
 
      $agent_id        = $_GET['agent_id'];
      $sort_time_click = $_GET['sort_time_click'];
@@ -113,6 +116,8 @@ function rrp_alert_partner_func() {
         $totalNotRelevantAlert   = $alert->countTotalNotRelevantAlert($partner_id);
         $client_content_class           = ' in active';
         $client_menu_class   = ' active';
+    } else {
+
     }
 
     rrp_script_and_style();
@@ -122,52 +127,73 @@ function rrp_alert_partner_func() {
 
   ?>
   <br><br><br>
-   <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+   <div style="border: 1px solid #d6d6d6;background-color: #f5f5f5;">
+
     <?php if($sort_time_click == true): ?>
-        <h3> Sort with agent click report for hour, day and week </h3>
-             <b> Agent Name: <?php echo rrp_get_user_full_name($agent_id); ?> </b> <br><br>
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="hidden" name="rrp_agent_id" id="rrp_agent_id"  value="<?php echo $agent_id; ?>" />
-                    <input type="radio" onclick="rrp_time_option('day')"  name="rrp_time_option" value="day" checked/>Day <br>
-                    <input type="radio" onclick="rrp_time_option('week')" name="rrp_time_option" value="week" />Week <br>
-                    <hr>
-                        <div id="rrp_sort_agent_click_per_day" style="display:block" >
-                            <label for="meeting"> Select date and time   </label><br>
-                            <select name="time" id="rrp_time_day_hour"  ><?php echo rrp_get_times('Selected..'); ?></select>
-                            <input id="rrp_time_day" type="date" value="<?php echo $dateNow; ?>"/>
-                        </div>
-                        <div id="rrp_sort_agent_click_per_week" style="display:none" >
 
-                            <label for="meeting">Meeting Date : </label><br><input  id="rrp_time_week" type="week" />
+<div class="panel panel-default">
+  <div class="panel-body">
+   Calculate total agent click report for hour, day and week.
+  </div>
+    <div class="panel-footer">
+         <b> Agent Name: <?php echo rrp_get_user_full_name($agent_id); ?> </b> <br><br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="hidden" name="rrp_agent_id" id="rrp_agent_id"  value="<?php echo $agent_id; ?>" />
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <div onclick="rrp_time_option('day')" style="display:inline; cursor:pointer" >    
+                            <input type="radio" name="rrp_time_option" value="day" checked/><span>Day</span>
                         </div>
-                    <hr>
-                    <input type="button" value="Calculate" onclick="rrp_agent_click()" />
-                    <hr>
-                    <div id="rrp_agent_total_click_response_display"> response here </div>
-                    <hr>
+                    </label>
+                    <label class="btn btn-primary">
+                        <div onclick="rrp_time_option('week')" style="display:inline;  cursor:pointer" >  
+                            <input type="radio" name="rrp_time_option" value="week" /><span>Week</span>
+                        </div>
+
+                    </label>
                 </div>
-            </div>
-    <?php else: ?>
+                <hr>
+                    <div id="rrp_sort_agent_click_per_day" style="display:block" >
+                        <label for="meeting">Calculate by hour and day</label><br> <br>
+                        <select name="time" id="rrp_time_day_hour"  ><?php echo rrp_get_times('Selected..'); ?></select><br><br>
+                        <input id="rrp_time_day" type="date" value="<?php echo $dateNow; ?>"/>
+                    </div>
 
+                    <div id="rrp_sort_agent_click_per_week" style=" display:none" >
+
+                        <label for="meeting">Calculate by week </label>  <br><br><input  id="rrp_time_week" type="week" /> <br><br>
+                    </div>
+                <hr>
+ 
+                <input type="button" value="Calculate" onclick="rrp_agent_click()" /> <br><br>
+          
+                    <div style="display: none;" class="rrp-loader" id="rrp_calculate_loader"></div>
+                  
+                <div id="rrp_agent_total_click_response_display">  </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <?php else: ?>
         <h3> Display Alerts </h3>
           <div class="row">
-            <div class="col-md-12">
+            <div>
               <ul class="nav nav-tabs">
                 <li class="<?php echo $client_menu_class; ?>"><a data-toggle="tab" href="#home">All Alert ( <?php print $totalAllAlert ; ?> )</a></li>
                 <li><a data-toggle="tab" href="#menu1">Relevant Alert (<?php print $totalRelevantAlert; ?>)</a></li>
                 <li class="<?php echo $agent_menu_class; ?>" ><a data-toggle="tab" href="#menu2">Not Relevant alert ( <?php print $totalNotRelevantAlert ; ?> )</a></li>
               </ul>
               <div class="tab-content">
-                <div id="home" class="tab-pane fade <?php echo $client_content_class; ?>">
+                <div id="home" class="tab-pane  <?php echo $client_content_class; ?>">
                     <div class="list-group">
                         <?php $alert->uiAlertAll($partnersAlertAll); ?>
                     </div>
                 </div>
-                <div id="menu1" class="tab-pane fade">
+                <div id="menu1" class="tab-pane ">
                     <?php $alert->uiAlertRelated($partnersAlertRelated);   ?>
                  </div>
-                <div id="menu2" class="tab-pane fade <?php echo $agent_content_class; ?>">
+                <div id="menu2" class="tab-pane  <?php echo $agent_content_class; ?>">
                     <?php $alert->uiAlertNotRelated($partnersAlertNotRelated);   ?>
                 </div>
               </div>
@@ -183,6 +209,9 @@ function rrp_alert_partner_func() {
 */
 function rrp_alert_agent_func()
  {
+
+    rrp_check_login_redirect_login_page(); 
+
     $partner_id              = 1486755452;
     $alert                   = new App\WP_Reputation_Radar_Alert();
     $partnersAlertInit        = $alert->getPartnersAlertInit($partner_id);
@@ -190,8 +219,9 @@ function rrp_alert_agent_func()
     rrp_script_and_style();
     print_site_url_hidden_field();
   ?>
-  <br><br><br>
-   <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+  <br><br><br> 
+   <!-- <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;"> --> 
+   <div class="container-reputation ">
     <br>
       <h3> Display Alerts </h3>
       <div class="row">
@@ -701,7 +731,9 @@ function rrp_alert_data_tables_test_func()
 * allow agent manage all the partner's rating sites
 */
 function rrp_patners_list_agent_func()
-{
+{ 
+    
+    rrp_check_login_redirect_login_page();
 
     error_reporting(0);
 
@@ -721,7 +753,6 @@ function rrp_patners_list_agent_func()
      }
 
 
-
      // Click delete link and trigger delete data
      else if($_GET['status'] == 'delete'){
          $rating_site->delete($_GET['id']);
@@ -736,18 +767,19 @@ function rrp_patners_list_agent_func()
 
      }
 
-   if(empty($partner_id)) {?>
-    <br><br><br>
-    <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
-    <br>
-      <h3> Display partners </h3>
-      <div class="row">
-        <div class="col-md-12">
-            <?php $rating_site->uiPartnersList($partnerIds); ?>
+   if(empty($partner_id))
+   {?>
+        <br><br><br>
+        <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
+        <br>
+          <h3> Display partners </h3>
+          <div class="row">
+            <div class="col-md-12">
+                <?php $rating_site->uiPartnersList($partnerIds); ?>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <?php
+        <?php
     }
     else if($_GET['status'] == 'edit')
     {
@@ -776,22 +808,21 @@ function rrp_patners_list_agent_func()
               $ratingSites  = $rating_site->getRatings($partner_id);
          }
         // dd($ratingSites);
-    ?>
+        ?>
+
+
        <br><br><br>
         <div class="container" style="border: 1px solid #d6d6d6;background-color: #f3f3f3;">
 
-
-
-
-<!--        <br>-->
+            <!--        <br>-->
             <!--          <h3> Manage partner information </h3>-->
           <div class="row" style="padding:50px">
             <div class="col-md-12" style="display:none">
                 <?php $rating_site->uiPartnersRatingSiteList($ratingSites); ?>
             </div>
-<!--            <br>-->
-<!--            <hr>-->
-<!--            <br> -->
+            <!--            <br>-->
+            <!--            <hr>-->
+            <!--            <br> -->
               <div class="col-md-12">
                 <h3>Add New Rating Site for partner id <?php print $partner_id; ?></h3>
                  <?php $rating_site->fieldTrustPilot($partner_id, $ratingSites); ?>

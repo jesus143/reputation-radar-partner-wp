@@ -21,6 +21,11 @@ if(!session_id()) {
  * reputation-radar-settings  - shortcode -> [rrp_settings]
  * reputation-radar-alert - shortcode -> [rrp_alert_partner]
  * reputation-radar-alert-agent  - shortcode -> [rrp_alert_agent]
+ *
+ * Note:
+ * Database is in testing....uk.com
+ * so reputation.radar is connected to testing
+ * also cronjobs queries is connected to testing database
  */
 
 

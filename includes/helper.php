@@ -94,13 +94,19 @@ function rrp_settings_get_specific_company_search_keyword_by_partner_id($partner
 
 }
 
-function dd($str)
-{
-	print "<pre>";
-	print_r($str);
-	print "</pre>";
-	die(1);
+
+if(!function_exists('dd')) {
+
+	function dd($str)
+	{
+		print "<pre>";
+		print_r($str);
+		print "</pre>";
+		die(1);
+	}
 }
+
+
 function rrp_get_authenticated_user_id()
 {
 	return  get_current_user_id();
@@ -113,13 +119,10 @@ function rrp_get_authenticated_partner_id()
 function rrp_as_get_current_user_partner_id()
 {
 	if(rrp_as_is_localhost() ){
-
 		return 54321;
-//		return 12345;
-
-		// dummy partner id for my localhost
+	} else if (rrp_is_reputation_radar() == true) {
+		return false;
 	} else {
-
 		$opResponse = rrp_as_get_ontraport_info();
 		$opResponse = json_decode($opResponse, true );
 		return $opResponse['data'][0]['id'];
@@ -291,9 +294,9 @@ function getExternalDatabaseInfo() {
 
 function getAllPartnerId()
 {
-//	$API_KEY  = '2_7818_ubHppKG8C';
+	//	$API_KEY  = '2_7818_ubHppKG8C';
 	$API_KEY  = 'fY4Zva90HP8XFx3';
-//	$API_ID  = 'Kiok5B2tzM00Oqf';
+	//	$API_ID  = 'Kiok5B2tzM00Oqf';
 	$API_ID  = '2_7818_AFzuWztKz';
 	$API_DATA = array(
 			'objectID'    => 0,
@@ -313,6 +316,13 @@ function getAllPartnerId()
 	curl_close($ch);
 
 	$API_INFO  = json_decode($response, true);
+
+	//	print "<pre>";
+	//		print_r($API_INFO['data']);
+	//	print "</pre>";
+	//
+	//	exit;
+
 	return $API_INFO['data'];
 }
 
@@ -356,10 +366,54 @@ function rrp_get_user_full_name($user_id){
 }
 
 function rrp_date_time_human_readable($dateTime) {
-	return date("F j/D Y , g:i a",strtotime($dateTime));
+	return date("F j/D Y , g:i:s a",strtotime($dateTime));
 }
 
 
 function rrp_get_date_today() {
 	return date('Y-m-d');
+}
+
+function rrp_get_current_url() {
+	$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+	$escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
+	return $escaped_url;
+}
+
+function rrp_is_reputation_radar() {
+	$url = rrp_get_current_url();
+
+	$pos = strpos($url, 'putationradar.umbrellasupport.co.uk');
+
+	if($pos < 1) {
+		return false;
+	} else {
+	 	return true;
+	}
+} 
+
+function rrp_is_logged_in()
+{ 
+	if(is_user_logged_in()) {
+		return true; 
+	} else { 
+		return false;
+	} 
+}
+
+function rrp_check_login_redirect_login_page() 
+{
+	
+	if(!rrp_is_logged_in()) { 
+
+		// get site url and concat with wp-login.php 
+		$url = get_site_url() . '/wp-login.php';  
+
+		// redirect to url
+		rrp_redirect($url);
+
+		exit; 
+	} else {
+
+	}
 }

@@ -68,7 +68,7 @@
 
     $totalClick = $results[0]['total_click'];
 
-    $link = " Total click between " . rrp_date_time_human_readable($dateToday) . " and " . rrp_date_time_human_readable($dateTodayLater) . "  agent total click is   <b> $totalClick </b>";
+    $link = " Total click between " . rrp_date_time_human_readable($dateToday) . " and " . rrp_date_time_human_readable($dateTodayLater) . " is   <b> $totalClick </b>";
 
 
  } else {

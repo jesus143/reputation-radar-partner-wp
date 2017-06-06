@@ -86,8 +86,9 @@ function deleteAlert(alert_id, loader)
             console.log("done delet ");
             jQuery(loader).css('display', 'none');
             jQuery("#rrp-alert-" + alert_id).css('display', 'none');
-        });
-
+        }); 
+    } else {
+        jQuery(loader).css('display', 'none');
     }
 }
 
@@ -96,7 +97,9 @@ function deleteAlert(alert_id, loader)
 
 
 function rrp_agent_click()
-{
+{ 
+
+
 
     type = document.querySelector('input[name="rrp_time_option"]:checked').value;
 
@@ -117,9 +120,17 @@ function rrp_agent_click()
 
         week = document.getElementById('rrp_time_week').value;
 
+        if(week == null || week == "") {
+            alert("Please select a week."); 
+            return;
+        } 
+
     }
 
-    console.log(" type " + type + " hour " + hour + " day " + day + " week " + week + " agent_id " + agent_id);
+    $("#rrp_calculate_loader").css('display', 'block'); 
+
+    console.log(" week " + week + " hour " + hour + " day "  + day);  
+    // console.log(" type " + type + " hour " + hour + " day " + day + " week " + week + " agent_id " + agent_id);
 
     // send post request
     $.post( getSiteUrl() + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_calculate.php", { agent_id: agent_id , type: type, hour:hour, day:day, week:week })
@@ -128,6 +139,9 @@ function rrp_agent_click()
             var response = JSON.parse(data);
             $("#rrp_agent_total_click_response_display").html(response.total_click);
             console.log( "Data Loaded: " + data );
+
+            $("#rrp_calculate_loader").css('display', 'none');
+
         });
 
     //$.post( getSiteUrl() + "/wp-content/plugins/reputation-radar-partner/includes/ajax/rate_agent_calculate.php", { agent_id: agent_id , type: type, hour:hour, day:day, week:week }, function( data ) {
