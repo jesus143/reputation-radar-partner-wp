@@ -366,7 +366,8 @@ function rrp_get_user_full_name($user_id){
 }
 
 function rrp_date_time_human_readable($dateTime) {
-	return date("F j/D Y , g:i:s a",strtotime($dateTime));
+	// return date("F j/D Y , g:i:s a",strtotime($dateTime));
+	return date("D j F, g:i a",strtotime($dateTime));
 }
 
 
@@ -415,5 +416,23 @@ function rrp_check_login_redirect_login_page()
 		exit; 
 	} else {
 
+	}
+}
+
+
+if(!function_exists('rrp_is_agent_page')) { 
+	function rrp_is_testing_page()
+	{ 
+		$pos = strpos(rrp_get_current_site_url_full(), 'testing');   
+		// Note our use of ===.  Simply == would not work as expected
+		// because the position of 'a' was the 0th (first) character.
+		if ($pos === false) { 
+		    // echo "The string '$findme' was not found in the string '$mystring'"; 
+			return false;
+		} else { 
+		    // echo "The string '$findme' was found in the string '$mystring'";
+		    // echo " and exists at position $pos";
+			return true;
+		} 
 	}
 }

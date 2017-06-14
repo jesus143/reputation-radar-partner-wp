@@ -145,10 +145,10 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-init" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th style="width:5%" >Id</th>
-				<th style="width:10%" >Partner Id</th>
-				<th  style="width:10%" >Source Url</th>
-				<th  style="width:20%" >keyword</th>
+				<th style="width:5%" >ID</th>
+				<th style="width:17%" >Partner ID</th>
+				<th  style="width:10%" >Source URL</th>
+				<th  style="width:18%" >Keyword</th>
 				<th style="width:7%" >Rate</th>
 				<th style="width:25%"  >Description</th>
 				<th>Time</th>
@@ -157,14 +157,14 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
-				<th>Id</th>
+				<!-- <th>Id</th>
 				<th>Partner Id</th>
-				<th>Source Url</th>
+				<th>Source URL</th>
 				<th>keyword</th>
 				<th>Rate</th>
 				<th>Description</th>
 				<th>Time</th>
-				<th>Relevant <br> Not Relevant</th>
+				<th>Relevant <br> Not Relevant</th> -->
 			</tr>
 			</tfoot>
 			<tbody>
@@ -182,10 +182,10 @@ class WP_Reputation_Radar_Alert {
 					</td>
 
 					<td>
-						<input type="button" class="alert alert-info" value="Relevant" onClick="updatePartnerAlertToRelatedByAgent('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )"/>
+						<input type="button" class="alert alert-info rrp-relevant-button" value="Relevant" onClick="updatePartnerAlertToRelatedByAgent('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )"/>
 						<div style="display:none" class="rrp-loader" id="alert-loader-relevant-<?php print $alert['id']; ?>"  ></div>
-						<br>
-						<input type="button" class="alert alert-info" value="Not Relevant" onClick="updatePartnerAlertToNotRelatedByAgent('<?php print $alert['id']; ?>',  '#alert-loader-not-relevant-<?php print $alert['id']; ?>')"/>
+						<br> 
+						<input   type="button" class="alert alert-info rrp-button-rating" value="Not Relevant" onClick="updatePartnerAlertToNotRelatedByAgent('<?php print $alert['id']; ?>',  '#alert-loader-not-relevant-<?php print $alert['id']; ?>')"/>
 						<div style="display:none" class="rrp-loader" id="alert-loader-not-relevant-<?php print $alert['id']; ?>" ></div>
 					</td>
 				</tr>
@@ -203,11 +203,11 @@ class WP_Reputation_Radar_Alert {
 			<thead>
 			<tr>
 			<tr>
-				<th style="width:5%;" >agent updated</th>
-				<th style="width:5%" >Id</th>
-				<th style="width:4%" >Partner Id</th>
-				<th  style="width:4%" >Source Url</th>
-				<th  style="width:10%" >keyword</th>
+				<th style="width:5%;" >Agent Updated</th>
+				<th style="width:5%" >ID</th>
+				<th style="width:6%" >Partner ID</th>
+				<th  style="width:4%" >Source URL</th>
+				<th  style="width:10%" >Keyword</th>
 				<th style="width:7%" >Rate</th>
 				<th style="width:25%"  >Description</th>
 				<th>Time</th>
@@ -216,15 +216,15 @@ class WP_Reputation_Radar_Alert {
 			</thead>
 			<tfoot>
 			<tr>
-				<th>agent updated</th>
+			<!-- 	<th>Agent Updated</th>
 				<th>Id</th>
 				<th>Partner Id</th>
-				<th>Source Url</th>
+				<th>Source URL</th>
 				<th>keyword</th>
 				<th>Rate</th>
 				<th>Description</th>
 				<th style="width:5%">Time</th>
-				<th>Relevant <br> Not Relevant</th>
+				<th>Relevant <br> Not Relevant</th> -->
 			</tr>
 			</tfoot>
 			<tbody>
@@ -244,13 +244,13 @@ class WP_Reputation_Radar_Alert {
 						<small><?php print rrp_time_elapsed_string($alert['created_at']); ?></small>
 					</td>
 					<td>
-						<input type="button" class="alert alert-info" value="Relevant"
+						<input type="button" class="alert alert-info rrp-relevant-button" value="Relevant"
 							   onClick="updatePartnerAlertToRelated('<?php print $alert['id']; ?>', '#alert-loader-relevant-<?php print $alert['id']; ?>' )"/>
-
+				
 						<div style="display:none" class="rrp-loader"
 							 id="alert-loader-relevant-<?php print $alert['id']; ?>"></div>
 						<br>
-						<input type="button" class="alert alert-info" value="Not Relevant"
+						<input   type="button" class="alert alert-info rrp-button-rating" value="Not Relevant"
 							   onClick="updatePartnerAlertNotToRelated('<?php print $alert['id']; ?>', '#alert-loader-not-relevant-<?php print $alert['id']; ?>' )"/>
 
 						<div style="display:none" class="rrp-loader"
@@ -270,10 +270,10 @@ class WP_Reputation_Radar_Alert {
 		<table id="rrp-alert-related" class="display" cellspacing="0" width="100%"> 
 			<thead>
 			<tr>
-				<th style="width:5%;" >agent updated</th>
-				<th style="width:5%" >Id</th>
-				<th style="width:8%" >Partner Id</th>
-				<th  style="width:5%" >Source Url</th>
+				<th style="width:5%;" >Agent Updated</th>
+				<th style="width:5%" >ID</th>
+				<th style="width:10%" >Partner ID</th>
+				<th  style="width:5%" >Source URL</th>
 				<th  style="width:10%" >Keyword</th>
 				<th style="width:7%" >Rate</th>
 				<th style="width:25%"  >Description</th>
@@ -284,15 +284,15 @@ class WP_Reputation_Radar_Alert {
 			<tfoot>
 			<tr>
 
-				<th>agent updated</th>
+			<!-- 	<th>Agent Updated</th>
 				<th>Id</th>
 				<th>Partner Id</th>
-				<th>Source Url</th>
+				<th>Source URL</th>
 				<th>Keyword</th>
 				<th>Rate</th>
 				<th>Description</th>
 				<th>Time</th>
-				<th>delete/th>
+				<th>delete/th> -->
 			</tr>
 			</tfoot>
 			<tbody>
@@ -327,33 +327,69 @@ class WP_Reputation_Radar_Alert {
 	}
 
 	public function uiAlertNotRelated($partnersAlertAll)
-	{ ?> 
+	{ 
+
+
+		$isTesting = rrp_is_testing_page();
+
+		if($isTesting == false) {
+			$style = '<style>  
+				.nav.nav-tabs { 
+				    margin-left: 1px !important;
+				    border: 1px solid white !important; 
+				}  
+			</style>'; 
+ 			print $style; 
+		}
+
+		?> 
+
+
 		<table id="rrp-alert-not-related" class="display" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th style="width:5%;" >agent updated</th>
-				<th style="width:5%" >Id</th>
-				<th style="width:8%" >Partner Id</th>
-				<th  style="width:5%" >Source Url</th>
-				<th  style="width:10%" >Keyword</th>
-				<th style="width:7%" >Rate</th>
-				<th style="width:25%"  >Description</th>
-				<th style="width:5%" >Time</th>
-				<th style="width:10%" >Delete</th>
+
+				<?php if($isTesting === true) { ?>
+					 
+					<th style="width:5%;"  >Agent Updated</th>
+					<th style="width:5%"   >ID</th>
+					<th style="width:10%"   >Partner ID</th>
+					<th  style="width:5%"  >Source URL</th>
+					<th  style="width:10%" >Keyword</th>
+					<th style="width:7%"   >Rate</th>
+					<th style="width:25%"  >Description</th>
+					<th style="width:5%"   >Time</th>
+					<th style="width:10%"  >Delete</th>
+
+				<?php } else { ?> 
+  
+			
+					<th style="width:8%;"  >Agent Updated</th>
+					<th style="width:5%"   >ID</th>
+					<th style="width:10%"   >Partner ID</th>
+					<th  style="width:15%"  >Source URL</th>
+					<th  style="width:10%" >Keyword</th>
+					<th style="width:6%"   >Rate</th>
+					<th style="width:25%"  >Description</th>
+					<th style="width:8%"   >Time</th>
+					<th style="width:10%"  >Delete</th>
+
+				<?php } ?>
+
 			</tr>
 			</thead>
 			<tfoot>
-			<tr>
-				<th>agent updated</th>
+			<!-- <tr> -->
+			<!-- 	<th>Agent Updated</th>
 				<th>Id</th>
 				<th>Partner Id</th>
-				<th>Source Url</th>
+				<th>Source URL</th>
 				<th>Keyword</th>
 				<th>Rate</th>
 				<th>Description</th>
 				<th>Time</th>
-				<th>Delete</th>
-			</tr>
+				<th>Delete</th> -->
+			<!-- </tr> -->
 			</tfoot>
 			<tbody>
 			<?php

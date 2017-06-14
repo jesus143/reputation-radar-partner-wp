@@ -9,50 +9,75 @@ function rrp_settings_func() {
     rrp_script_and_style();
     $keyword_setting = rrp_setting_get_current_user_keyword_setting();
     print_site_url_hidden_field(); ?>
+     
+        <style> 
 
+            /* Hide title and pre style  */
+            #page-content h2:nth-child(1), pre {
+                color:red !important; 
+                display:none !important; 
+            } 
 
+            /** Make the row fit with the container */
+            .row {
+                width: 100% !important;
+                padding: 0px !important;
+                margin: 0px !important;
+                max-width: 98%;
+            }
 
-    <br><br>
-      <div class="row">
-        <div class="col-md-12">
-           <br/><br/> 
-               <div class="list-group"> 
-            <a href="#" class="list-group-item active"> 
-              <h4 class="list-group-item-heading">Company Keyword For Internet Search</h4> 
-              <p class="list-group-item-text"> <small>This is the company keyword for internet search...............</small>  </p> 
-            </a> 
-            <div class="list-group-item">  
+        </style> 
+  
+        <div class="row" >
+            <div class="col-md-12"> 
+            
+                <?php  
+                    if(!empty($_SESSION['rrp_settings_update_status'])) {  
+                        echo "<br><br>";
+                        echo $_SESSION['rrp_settings_update_status'];
+                        unset($_SESSION['rrp_settings_update_status']); 
+                    } 
+                ?> 
 
-                <form action="<?php print rrp_get_current_site_url_full(); ?>" method="post" >
-                <br><br>
-                <div class="form-group">
+                <br/><br/> 
+                <div class="list-group">  
+                    <div  style="background: #d7090b; padding:10px;">
+                        <div style="text-align:center" > 
+                            <span style="font-size:20px;color:white;">Company Keyword For Internet Search</span> 
+                        </div> 
+                    </div>   
+                </div>
+                <div class="list-group-item">   
+                    <form action="<?php print rrp_get_current_site_url_full(); ?>" method="post" >
 
-                    <?php //print " user_id " . rrp_get_authenticated_user_id(); ?>
-                  <label class="label" style="color:black"> Company Search Keyword </label><br><br>
-                  <input type="text" style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_keyword(); ?>" name="company_search_keyword" />
+                        <br><br>
+                        <div class="form-group"> 
 
-                  <hr>
-                  <label class="label" style="color:black"> Company Url</label><br><br>
-                  <input type="text"  style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
+                            <?php //print " user_id " . rrp_get_authenticated_user_id(); ?>
+                            <label class="label" style="color:black"> Company Search Keyword </label><br><br>
+                            <input type="text" style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_keyword(); ?>" name="company_search_keyword" />
 
-                  <hr>
-                  <label class="label" style="color:black">Choose Keyword Settings</label><br><br>
-                    <select name="keyword_setting" class="form-control"  style="width:98%" >
-                        <option value="Broad match"             <?php print ($keyword_setting == 'Broad match') ? 'selected' : null; ?>            >Broad match (keywod) - "Broad match is the default match type that all your keywords are assigned"</option>
-                        <option value="Broad match modifier"    <?php print ($keyword_setting == 'Broad match modifier') ? 'selected' : null; ?>   >Broad match modifier (+keywod) - "Ads may show on searches that contain the modified term (or close variations, but not synonyms), in any order."</option>
-                        <option value="Phrase match"            <?php print ($keyword_setting == 'Phrase match') ? 'selected' : null; ?>           >Phrase match ("keywod") - "Ads may show on searches that are a phrase, and close variations of that phrase."</option>
-                        <option value="Exact match"             <?php print ($keyword_setting == 'Exact match') ? 'selected' : null; ?>            >Exact match ([keyword]) - "Ads may show on searches that are an exact term and close variations of that exact term." </option>
-                        <option value="Negative match"          <?php print ($keyword_setting == 'Negative match') ? 'selected' : null; ?>         >Negative match (-keyword) - "Ads may show on searches without the term."</option>
-                    </select>
+                            <hr>
+                            <label class="label" style="color:black"> Company Url</label><br><br>
+                            <input type="text"  style="width:98%" class="form-control" value="<?php print rrp_settings_get_current_user_url(); ?>" name="company_url" />
 
-                  <br/>
-                  <input type="submit" value="Update" class="alert alert-info" name="rrp_post_settings"  />
-                  </form>
+                            <hr>
+                            <label class="label" style="color:black">Choose Keyword Settings</label><br><br>
+                                <select name="keyword_setting" class="form-control"  style="width:98%" >
+                                    <option value="Broad match"             <?php print ($keyword_setting == 'Broad match') ? 'selected' : null; ?>            >Broad match (keywod) - "Broad match is the default match type that all your keywords are assigned"</option>
+                                    <option value="Broad match modifier"    <?php print ($keyword_setting == 'Broad match modifier') ? 'selected' : null; ?>   >Broad match modifier (+keywod) - "Ads may show on searches that contain the modified term (or close variations, but not synonyms), in any order."</option>
+                                    <option value="Phrase match"            <?php print ($keyword_setting == 'Phrase match') ? 'selected' : null; ?>           >Phrase match ("keywod") - "Ads may show on searches that are a phrase, and close variations of that phrase."</option>
+                                    <option value="Exact match"             <?php print ($keyword_setting == 'Exact match') ? 'selected' : null; ?>            >Exact match ([keyword]) - "Ads may show on searches that are an exact term and close variations of that exact term." </option>
+                                    <option value="Negative match"          <?php print ($keyword_setting == 'Negative match') ? 'selected' : null; ?>         >Negative match (-keyword) - "Ads may show on searches without the term."</option>
+                                </select> 
+                            <br/>
+                            <input type="submit" value="Update" class="alert alert-info rrp-post-settings" name="rrp_post_settings"  />
+                        </div> 
+                    </form>
                 </div> 
             </div>  
-          </div>
         </div>
-      </div>
+   
 <?php 
 }
 
@@ -65,12 +90,10 @@ function rrp_alert_partner_func() {
 
      error_reporting(0);
 
-     $agent_id        = $_GET['agent_id'];
-     $sort_time_click = $_GET['sort_time_click'];
-     $action = $_GET['action'];
-
-
-
+     $agent_id           = $_GET['agent_id'];
+     $sort_time_click    = $_GET['sort_time_click'];
+     $action             = $_GET['action'];
+ 
      $alert                   = new App\WP_Reputation_Radar_Alert();
      $setting                 = new App\WP_Reputation_Radar_Settings();
      $partner_id              = $setting->getCurrentPartnerIdFromSettings();
@@ -95,18 +118,21 @@ function rrp_alert_partner_func() {
 
 
          if($action == 'view all click') {
-             $partnersAlertAll = $alert->getPartnersAlertAllByAgentClick($agent_id);
-             $totalAllAlert =  count($partnersAlertAll);
+
+             $partnersAlertAll  = $alert->getPartnersAlertAllByAgentClick($agent_id);
+             $totalAllAlert     =  count($partnersAlertAll);
 
              $partnersAlertRelated = $alert->getPartnersAlertRelatedByAgentClick($agent_id);
-             $totalRelevantAlert =  count($partnersAlertRelated);
+             $totalRelevantAlert   =  count($partnersAlertRelated);
+
          }
 
 
-         $agent_content_class           =  ' in active';
-         $agent_menu_class = 'active';
+         $agent_content_class   =  ' in active';
+         $agent_menu_class      = 'active';
 
     } else if(!empty($partner_id)) {
+
         $partnersAlertAll        = $alert->getPartnersAlertAll($partner_id);
         $partnersAlertRelated    = $alert->getPartnersAlertRelated($partner_id);
         $partnersAlertNotRelated = $alert->getPartnersAlertNotRelated($partner_id);
@@ -114,69 +140,62 @@ function rrp_alert_partner_func() {
         $totalAllAlert           = $alert->countTotalAllAlert($partner_id);
         $totalRelevantAlert      = $alert->countTotalRelevantAlert($partner_id);
         $totalNotRelevantAlert   = $alert->countTotalNotRelevantAlert($partner_id);
-        $client_content_class           = ' in active';
-        $client_menu_class   = ' active';
+        $client_content_class    = ' in active';
+        $client_menu_class       = ' active';
+
     } else {
 
-    }
-
+    } 
     rrp_script_and_style();
     print_site_url_hidden_field();
     $dateNow = rrp_get_date_today();
-    // dd($partnersAlertAll);
 
+    // dd($partnersAlertAll); 
+     
   ?>
   <br><br><br>
-   <div style="border: 1px solid #d6d6d6;background-color: #f5f5f5;">
+   <div> 
 
-    <?php if($sort_time_click == true): ?>
-
-<div class="panel panel-default">
-  <div class="panel-body">
-   Calculate total agent click report for hour, day and week.
-  </div>
-    <div class="panel-footer">
-         <b> Agent Name: <?php echo rrp_get_user_full_name($agent_id); ?> </b> <br><br>
-        <div class="row">
-            <div class="col-md-12">
-                <input type="hidden" name="rrp_agent_id" id="rrp_agent_id"  value="<?php echo $agent_id; ?>" />
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <div onclick="rrp_time_option('day')" style="display:inline; cursor:pointer" >    
-                            <input type="radio" name="rrp_time_option" value="day" checked/><span>Day</span>
+    <?php if($sort_time_click == true): ?> 
+        <div class="panel panel-default">
+          <div class="panel-body">
+           Calculate total agent click report for hour, day and week.
+          </div>
+            <div class="panel-footer">
+                 <b> Agent Name: <?php echo rrp_get_user_full_name($agent_id); ?> </b> <br><br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="hidden" name="rrp_agent_id" id="rrp_agent_id"  value="<?php echo $agent_id; ?>" />
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <div onclick="rrp_time_option('day')" style="display:inline; cursor:pointer" >    
+                                    <input type="radio" name="rrp_time_option" value="day" checked/><span>Day</span>
+                                </div>
+                            </label>
+                            <label class="btn btn-primary">
+                                <div onclick="rrp_time_option('week')" style="display:inline;  cursor:pointer" >  
+                                    <input type="radio" name="rrp_time_option" value="week" /><span>Week</span>
+                                </div> 
+                            </label>
                         </div>
-                    </label>
-                    <label class="btn btn-primary">
-                        <div onclick="rrp_time_option('week')" style="display:inline;  cursor:pointer" >  
-                            <input type="radio" name="rrp_time_option" value="week" /><span>Week</span>
-                        </div>
-
-                    </label>
+                        <hr>
+                            <div id="rrp_sort_agent_click_per_day" style="display:block" >
+                                <label for="meeting">Calculate by hour and day</label><br> <br>
+                                <select name="time" id="rrp_time_day_hour"  ><?php echo rrp_get_times('Selected..'); ?></select><br><br>
+                                <input id="rrp_time_day" type="date" value="<?php echo $dateNow; ?>"/>
+                            </div> 
+                            <div id="rrp_sort_agent_click_per_week" style=" display:none" > 
+                                <label for="meeting">Calculate by week </label>  <br><br><input  id="rrp_time_week" type="week" /> <br><br>
+                            </div>
+                        <hr> 
+                        <input type="button" value="Calculate" onclick="rrp_agent_click()" /> <br><br> 
+                            <div style="display: none;" class="rrp-loader" id="rrp_calculate_loader"></div> 
+                        <div id="rrp_agent_total_click_response_display">  </div>
+                    </div>
                 </div>
-                <hr>
-                    <div id="rrp_sort_agent_click_per_day" style="display:block" >
-                        <label for="meeting">Calculate by hour and day</label><br> <br>
-                        <select name="time" id="rrp_time_day_hour"  ><?php echo rrp_get_times('Selected..'); ?></select><br><br>
-                        <input id="rrp_time_day" type="date" value="<?php echo $dateNow; ?>"/>
-                    </div>
-
-                    <div id="rrp_sort_agent_click_per_week" style=" display:none" >
-
-                        <label for="meeting">Calculate by week </label>  <br><br><input  id="rrp_time_week" type="week" /> <br><br>
-                    </div>
-                <hr>
- 
-                <input type="button" value="Calculate" onclick="rrp_agent_click()" /> <br><br>
-          
-                    <div style="display: none;" class="rrp-loader" id="rrp_calculate_loader"></div>
-                  
-                <div id="rrp_agent_total_click_response_display">  </div>
             </div>
         </div>
-    </div>
-</div>
-    <?php else: ?>
-        <h3> Display Alerts </h3>
+    <?php else: ?> 
           <div class="row">
             <div>
               <ul class="nav nav-tabs">
@@ -199,8 +218,11 @@ function rrp_alert_partner_func() {
               </div>
             </div>
           </div>
+           <br><br><br>
    <?php endif; ?>
   </div>
+
+
   <?php
 }
 /**

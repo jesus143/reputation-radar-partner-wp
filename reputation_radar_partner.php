@@ -13,26 +13,40 @@ if(!session_id()) {
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages
- *
- *
- *
- *
+ *  
  * pages:
- * reputation-radar-settings  - shortcode -> [rrp_settings]
- * reputation-radar-alert - shortcode -> [rrp_alert_partner]
- * reputation-radar-alert-agent  - shortcode -> [rrp_alert_agent]
+ * 
+ *  [rrp_settings]
+ *  This shortcode is to display the settings for scraping in google
+ * 
+ * [rrp_alert_partner]
+ * This is to display all the alerts for partner that has been already rated by agents
+ * 
+ * [rrp_alert_agent]
+ * All alert display and need the rating of the agents
+ * 
+ * reputation-radar-alert-agent-list  - shortcode -> [rrp_patners_list_agent_func]
+ * 
  *
+ * 
  * Note:
  * Database is in testing....uk.com
  * so reputation.radar is connected to testing
  * also cronjobs queries is connected to testing database
+ *
+ *
+ * If the domain is updated then also change it to the rrp_pages
  */
-
-
+ 
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
+/**
+ * Pages 
+ */
+$_SESSION['rrp_pages'] = ['reputation-radar-alert', 'reputation-radar-alert-agent', 'reputation-radar', 'reputation-radar-test', 'reputation-radar-partners-agent'];
+ 
 require_once plugin_dir_path( __FILE__ ) . '/includes/class-single-post-meta-manager.php';
 
 function run_single_post_meta_manager() {

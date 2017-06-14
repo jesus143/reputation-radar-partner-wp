@@ -23,16 +23,24 @@ td, th, input {
     font-size:11px !important;
 }
 
-#rrp-alert-init_wrapper .alert-info {
-    background-color: #d7090a; 
-    padding:7px  
 
+
+
+
+
+/** Agent alerts */
+
+
+#rrp-alert-init_wrapper .alert-info, .alert-info {
+    background-color: #d7090a;
+    padding:7px;
+    color:white !important;
 }
 
 
-#rrp-alert-init_wrapper .alert-info:hover {
-    background-color:black; 
-    color:#d7090a; 
+#rrp-alert-init_wrapper .alert-info:hover, .alert-info:hover {
+    background-color:black !important; 
+    color:#d7090a !important; 
 } 
 
 .container-reputation {
@@ -57,4 +65,69 @@ td, th, input {
 
 .container-reputation  h3:nth-child(2) {
     display:none; 
+}
+
+.row {
+    width: 100% !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    max-width: 98%;
+}
+ 
+/** partner alerts page */  
+#page-content  h2:nth-child(1) {
+    display:none; 
+}
+ 
+ pre {
+     display:none !important; 
+ }
+
+ 
+.dataTables_filter {
+     padding-right:15px;
+     padding-top:15px; 
+}
+ .dataTables_filter input {
+     padding:5px; 
+ }
+
+ .dataTables_length {
+     padding-left:15px;
+     padding-top:20px; 
+ }
+
+.dataTables_length  select {
+    padding:5px;
+}
+
+.nav-tabs {
+  margin-left:170px !important;
+}
+
+.rrp-button-rating {
+  margin-top:5px !important;
+  background-color:#d7090a !important; 
+
+}
+
+/** Custom Font Size */
+input[type="text"], p, div, span, select, label, input[type="submit"] {
+  font-size:14px !important; 
+}  
+.rrp-relevant-button {
+  background: green !important; 
+}
+ 
+a { 
+  color: #505050 !important; 
+}
+
+.nav-tabs .active a {
+  color:#d7090b !important;
+}
+
+.rrp-post-settings {
+     background-color: #d7090b !important;
+     color:white !important;
 }

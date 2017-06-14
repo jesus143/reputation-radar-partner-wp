@@ -98,6 +98,7 @@ class Single_Post_Meta_Manager {
         define('rrp_site_dir_includes', plugin_dir_path( __FILE__ ));
         define('rrp_site', get_site_url());
         define("rrp_partner_id_list_url", rrp_site . '/reputation-radar-partners-agent');
+
     }
 
     private function define_admin_hooks()
@@ -106,15 +107,20 @@ class Single_Post_Meta_Manager {
     }
 
     private function define_actions()
-    {
-        add_action( 'admin_menu', 'rrp_admin_menu', 99 );
-        add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts', 100 );
-        add_action( 'body_begin', 'my_function');
+    {  
+        /** */
+        add_action( 'admin_menu', 'rrp_admin_menu', 99 );  
 
-        //        add_action( 'after_body', function($after_body){
-        //            $after_body.='<input type="hidden" value="' . get_site_url() . '" id="rrp_ri_site_url"  />';
-        //            return $after_body;
-        //        });
+        /**  */
+        foreach($_SESSION['rrp_pages'] as $page) { 
+            if(strpos($_SERVER['REQUEST_URI'], $page) > 0) {
+                add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts', 100 );
+            }
+        } 
+
+        /**  */
+        add_action( 'body_begin', 'my_function');
+ 
     }
 
     private function define_shortcodes()

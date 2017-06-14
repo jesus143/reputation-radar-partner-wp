@@ -11,6 +11,9 @@ use App\RRP_QUERIES;
 
 if(isset($_POST['rrp_post_settings'])) { 
 
+
+	$_SESSION['rrp_settings_update_status'] = '';
+	
 	$rrp_queries = new RRP_QUERIES('wp_reputation_radar_settings');  
 
  	$company_search_keyword  = $_POST['company_search_keyword'];
@@ -22,16 +25,16 @@ if(isset($_POST['rrp_post_settings'])) {
  	if(!empty($settings)) { 
  		// update  
  		if ( $rrp_queries->wpdb_update(['company_search_keyword'=>$company_search_keyword, 'partner_id'=>$partner_id, 'url'=>$company_url, 'keyword_setting'=>$keyword_setting], ['user_id'=>$user_id]) ) {
- 			print " successfully updated ";
+ 			$_SESSION['rrp_settings_update_status'] = "<div class='alert alert-success' > successfully updated </div>";
  		} else {
- 			print " failed to updated";
+ 			$_SESSION['rrp_settings_update_status'] =  "<div class='alert alert-danger' > failed to updated </div>";
  		}
  	} else {
  		// insert
  		if ( $rrp_queries->wpdb_insert(['user_id'=>$user_id, 'company_search_keyword'=>$company_search_keyword, 'partner_id'=>$partner_id, 'url'=>$company_url, 'keyword_setting'=>$keyword_setting])) {
- 			print " successfully inserted ";
+ 			$_SESSION['rrp_settings_update_status'] =  "<div class='alert alert-success' > successfully inserted </div>";
  		} else {
- 			print " failed to insert";
+ 			$_SESSION['rrp_settings_update_status'] =  "<div class='alert alert-danger' > failed to insert </div>";
  		}
  	} 
 }
